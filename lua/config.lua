@@ -19,6 +19,17 @@ opt.shiftwidth = 4
 opt.smartindent = true
 opt.tabstop = 4
 opt.softtabstop = 4
+opt.list = true
+
+vim.opt.listchars = {
+    tab = "› ",
+    --eol = "⤶",
+    space = " ",
+    trail = "•",
+    extends = "◀",
+    precedes = "▶",
+    nbsp = ".",
+}
 
 opt.fillchars = { eob = " " }
 opt.ignorecase = true
@@ -32,7 +43,7 @@ opt.ruler = false
 opt.relativenumber = true
 
 -- disable nvim intro
-opt.shortmess:append "sIcm"
+opt.shortmess:append("sIcm")
 
 opt.signcolumn = "yes"
 opt.splitbelow = true
@@ -46,17 +57,17 @@ opt.updatetime = 250
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
-opt.whichwrap:append "<>[]hl"
+opt.whichwrap:append("<>[]hl")
 opt.wrap = false
 
 -- disable some default providers
-for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
-  vim.g["loaded_" .. provider .. "_provider"] = 0
+for _, provider in ipairs({ "node", "perl", "python3", "ruby" }) do
+	vim.g["loaded_" .. provider .. "_provider"] = 0
 end
 
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
-vim.env.PATH = vim.env.PATH .. (is_windows and ";" or ":") .. vim.fn.stdpath "data" .. "/mason/bin"
+vim.env.PATH = vim.env.PATH .. (is_windows and ";" or ":") .. vim.fn.stdpath("data") .. "/mason/bin"
 
 -------------------------------------- do functions ------------------------------------------
 require("mappings").general_mapping()
@@ -65,15 +76,15 @@ local autocmd = vim.api.nvim_create_autocmd
 
 -- dont list quickfix buffers
 autocmd("FileType", {
-  pattern = "qf",
-  callback = function()
-    vim.opt_local.buflisted = false
-  end,
+	pattern = "qf",
+	callback = function()
+		vim.opt_local.buflisted = false
+	end,
 })
 
 -------------------------------------- commands ------------------------------------------
 local new_cmd = vim.api.nvim_create_user_command
 
 new_cmd("NvChadUpdate", function()
-  require "nvchad.update"()
+	require("nvchad.update")()
 end, {})

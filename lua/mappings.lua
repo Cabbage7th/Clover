@@ -47,21 +47,50 @@ M.general_mapping = function ()
 
     -- Don't copy the replaced text after pasting in visual mode
     vim.keymap.set('x', "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { silent = true })
+    
+    vim.keymap.set('v', "<", "<gv")
+    vim.keymap.set('v', ">", ">gv")
 end
 
 M.comment = function ()
+    local api = require('Comment.api')
+    local config = require('Comment.config'):get()
+
     vim.keymap.set(
         {'n'},
-        "<leader>/",
+        "<leader>cc",
         function()
-            require("Comment.api").toggle.linewise.current()
+            require("Comment.api").comment.linewise.count()
         end
     )
     vim.keymap.set(
-        {'v'},
-        "<leader>/",
-        "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>"
+        {'n', 'v'},
+        "<leader>cu",
+        function()
+            require("Comment.api").uncomment.linewise.count()
+        end
     )
+    -- Toggle blockwise
+    vim.keymap.set(
+        {'n', 'v'}, "<leader>cb",
+        function()
+            require("Comment.api").toggle.blockwise.count()
+        end
+    )
+    local esc = vim.api.nvim_replace_termcodes(
+        '<ESC>', true, false, true
+    )
+    -- Toggle selection (linewise)
+    vim.keymap.set('x', '<leader>cc', function()
+        vim.api.nvim_feedkeys(esc, 'nx', false)
+        api.toggle.linewise(vim.fn.visualmode())
+    end)
+
+    -- Toggle selection (blockwise)
+    vim.keymap.set('x', '<leader>cb', function()
+        vim.api.nvim_feedkeys(esc, 'nx', false)
+        api.toggle.blockwise(vim.fn.visualmode())
+    end)
 end
 
 M.lspconfig = function (bufnr)
@@ -248,22 +277,23 @@ M.whichkey = function ()
     )
 end
 
+-- TODO : key conflict
 M.blankline = function ()
-    vim.keymap.set(
-        {'n'},
-        "<leader>cc",
-        function()
-            local ok, start = require("indent_blankline.utils").get_current_context(
-                vim.g.indent_blankline_context_patterns,
-                vim.g.indent_blankline_use_treesitter_scope
-                )
-
-            if ok then
-                vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
-                vim.cmd [[normal! _]]
-            end
-        end
-    )
+    -- vim.keymap.set(
+    --     {'n'},
+    --     "<leader>cc",
+    --     function()
+    --         local ok, start = require("indent_blankline.utils").get_current_context(
+    --             vim.g.indent_blankline_context_patterns,
+    --             vim.g.indent_blankline_use_treesitter_scope
+    --             )
+    --
+    --         if ok then
+    --             vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
+    --             vim.cmd [[normal! _]]
+    --         end
+    --     end
+    -- )
 end
 
 M.gitsigns = function (bufnr)
