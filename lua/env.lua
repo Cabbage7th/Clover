@@ -8,7 +8,7 @@ M.ui = {
   ------------------------------- theme -------------------------------------
   theme = {
       theme_toggle = { "onedark", "one_light" },
-      name = "onedark", -- default theme
+      name = "kanagawa", -- default theme
       style = "dark",
       transparency = false,
       lsp_semantic_tokens = false, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens

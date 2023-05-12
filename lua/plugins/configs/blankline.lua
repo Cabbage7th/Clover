@@ -14,7 +14,6 @@ M.blankline = {
     "nvcheatsheet",
     "",
   },
-    -- TODO show space
   buftype_exclude = { "terminal" },
   show_trailing_blankline_indent = true,
   show_first_indent_level = false,
