@@ -47,7 +47,7 @@ M.general_mapping = function ()
 
     -- Don't copy the replaced text after pasting in visual mode
     vim.keymap.set('x', "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { silent = true })
-    
+
     vim.keymap.set('v', "<", "<gv")
     vim.keymap.set('v', ">", ">gv")
 end
@@ -246,17 +246,17 @@ M.nvterm = function()
         function()
             require("nvterm.terminal").toggle "float"
         end
-        )
+    )
     vim.keymap.set( {'t', 'n'}, "<A-h>",
         function()
             require("nvterm.terminal").toggle "horizontal"
         end
-        )
+    )
     vim.keymap.set( {'t', 'n'}, "<A-v>",
         function()
             require("nvterm.terminal").toggle "vertical"
         end
-        )
+    )
 end
 
 M.whichkey = function ()
