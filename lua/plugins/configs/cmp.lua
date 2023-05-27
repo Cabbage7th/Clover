@@ -1,29 +1,13 @@
 local cmp = require "cmp"
 
-local cmp_ui = require("env").ui.cmp
-local cmp_style = cmp_ui.style
-
-local field_arrangement = {
-  atom = { "kind", "abbr", "menu" },
-  atom_colored = { "kind", "abbr", "menu" },
-}
-
 local formatting_style = {
-  -- default fields order i.e completion word + item.kind + item.kind icons
-  fields = field_arrangement[cmp_style] or { "abbr", "kind", "menu" },
 
   format = function(_, item)
     local icons = require("icons").lspkind
-    local icon = (cmp_ui.icons and icons[item.kind]) or ""
+    local icon = icons[item.kind]
 
-    if cmp_style == "atom" or cmp_style == "atom_colored" then
-      icon = " " .. icon .. " "
-      item.menu = cmp_ui.lspkind_text and "   (" .. item.kind .. ")" or ""
-      item.kind = icon
-    else
-      icon = cmp_ui.lspkind_text and (" " .. icon .. " ") or icon
-      item.kind = string.format("%s %s", icon, cmp_ui.lspkind_text and item.kind or "")
-    end
+    icon = " " .. icon .. " "
+    item.kind = string.format("%s %s", icon, item.kind)
 
     return item
   end,
@@ -49,13 +33,14 @@ local options = {
 
   window = {
     completion = {
-      side_padding = (cmp_style ~= "atom" and cmp_style ~= "atom_colored") and 1 or 0,
-      winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel",
+      side_padding = 1,
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+      border = border "Border",
       scrollbar = false,
     },
     documentation = {
-      border = border "CmpDocBorder",
-      winhighlight = "Normal:CmpDoc",
+      border = border "DocBorder",
+      winhighlight = "Normal:Doc",
     },
   },
   snippet = {
@@ -110,9 +95,5 @@ local options = {
     { name = "path" },
   },
 }
-
-if cmp_style ~= "atom" and cmp_style ~= "atom_colored" then
-  options.window.completion.border = border "CmpBorder"
-end
 
 return options

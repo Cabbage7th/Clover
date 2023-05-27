@@ -1,7 +1,7 @@
 local M = {
     options = {
         icons_enabled = true,
-        theme = require("env").ui.theme.name,
+        theme = vim.g.theme,
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
         disabled_filetypes = {

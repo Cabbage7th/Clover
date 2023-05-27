@@ -4,11 +4,7 @@ local M = {}
 M.on_attach = function(client, bufnr)
     require("mappings").lspconfig(bufnr)
 
-  --if client.server_capabilities.signatureHelpProvider then
-    --require("nvchad_ui.signature").setup(client)
-  --end
-
-  if not require("env").ui.lsp_semantic_tokens then
+  if not vim.g.lsp_semantic_tokens then
     client.server_capabilities.semanticTokensProvider = nil
   end
 end

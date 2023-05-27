@@ -17,9 +17,9 @@ vim.opt.rtp:prepend(lazypath)
 require("plugins")
 
 ------------------------------------- colorscheme -----------------------------------------
-local theme = require("env").ui.theme
+local theme = vim.g.theme
 if theme then
-    require(theme.name).load()
-    vim.opt.background = require("env").ui.theme.style
+    require(theme).load()
+    vim.opt.background = vim.g.background
 end
 

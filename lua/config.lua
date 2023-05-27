@@ -4,7 +4,13 @@ local g = vim.g
 ------------------------------------- leader key -----------------------------------------
 g.mapleader = ","
 -------------------------------------- globals -----------------------------------------
---
+g.theme_toggle = { "onedark", "one_light" }
+g.theme = "tokyonight" -- onedark/tokyonight/catppuccin/kanagawa/tender
+g.background = "dark"
+g.transparency = false
+
+g.lsp_semantic_tokens = false
+
 -------------------------------------- options ------------------------------------------
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
