@@ -20,5 +20,6 @@ require("plugins")
 local theme = require("env").ui.theme
 if theme then
     require(theme.name).load()
+    vim.opt.background = require("env").ui.theme.style
 end
 

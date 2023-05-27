@@ -8,7 +8,6 @@ local default_plugins = {
         "folke/tokyonight.nvim",
         { "catppuccin/nvim", name = "catppuccin" },
         "rebelot/kanagawa.nvim",
-        "jacoborus/tender.vim",
     },
 
     {
@@ -204,7 +203,9 @@ local default_plugins = {
     {
         "nvim-tree/nvim-tree.lua",
         cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+        lazy = false,
         init = function()
+            require("lazy").load { plugins = "nvim-tree.lua" }
             require("mappings").nvimtree()
         end,
         opts = function()
@@ -267,6 +268,37 @@ local default_plugins = {
             -- you can configure Hop the way you like here; see :h hop-config
             require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
             require("mappings").hop()
+        end,
+    },
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = {
+            {
+                'nvim-tree/nvim-web-devicons'
+            }
+        },
+        init = function()
+            require("lazy").load { plugins = "lualine.nvim" }
+        end,
+        opts = function()
+            return require "plugins.configs.lualine"
+        end,
+        config = function(_, opts)
+            require("lualine").setup(opts)
+        end,
+    },
+    {
+        'akinsho/bufferline.nvim',
+        version = "*",
+        dependencies = {'nvim-tree/nvim-web-devicons'},
+        init = function()
+            require("lazy").load { plugins = "bufferline.nvim" }
+        end,
+        opts = function()
+            return require "plugins.configs.bufferline"
+        end,
+        config = function(_, opts)
+            require("bufferline").setup(opts)
         end,
     }
 }

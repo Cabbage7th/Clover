@@ -64,7 +64,7 @@ M.comment = function ()
         end
     )
     vim.keymap.set(
-        {'n', 'v'},
+        {'n'},
         "<leader>cu",
         function()
             require("Comment.api").uncomment.linewise.count()
@@ -72,7 +72,7 @@ M.comment = function ()
     )
     -- Toggle blockwise
     vim.keymap.set(
-        {'n', 'v'}, "<leader>cb",
+        {'n'}, "<leader>cb",
         function()
             require("Comment.api").toggle.blockwise.count()
         end
@@ -233,7 +233,8 @@ M.telescope = function ()
     vim.keymap.set("n", "<leader>fb", "<cmd> Telescope buffers <CR>")
     vim.keymap.set("n", "<leader>fh", "<cmd> Telescope help_tags <CR>")
     vim.keymap.set("n", "<leader>fo", "<cmd> Telescope oldfiles <CR>")
-    vim.keymap.set("n", "<leader>fz", "<cmd> Telescope current_buffer_fuzzy_find <CR>")
+    vim.keymap.set("n", "<leader>fs", "<cmd> Telescope current_buffer_fuzzy_find <CR>")
+    vim.keymap.set("n", "<leader>fz", "<cmd> Telescope lsp_document_symbols <CR>")
 
     -- git
     vim.keymap.set("n", "<leader>cm", "<cmd> Telescope git_commits <CR>")
