@@ -52,47 +52,6 @@ M.general_mapping = function ()
     vim.keymap.set('v', ">", ">gv")
 end
 
-M.comment = function ()
-    local api = require('Comment.api')
-    local config = require('Comment.config'):get()
-
-    vim.keymap.set(
-        {'n'},
-        "<leader>cc",
-        function()
-            require("Comment.api").comment.linewise.count()
-        end
-    )
-    vim.keymap.set(
-        {'n'},
-        "<leader>cu",
-        function()
-            require("Comment.api").uncomment.linewise.count()
-        end
-    )
-    -- Toggle blockwise
-    vim.keymap.set(
-        {'n'}, "<leader>cb",
-        function()
-            require("Comment.api").toggle.blockwise.count()
-        end
-    )
-    local esc = vim.api.nvim_replace_termcodes(
-        '<ESC>', true, false, true
-    )
-    -- Toggle selection (linewise)
-    vim.keymap.set('x', '<leader>cc', function()
-        vim.api.nvim_feedkeys(esc, 'nx', false)
-        api.toggle.linewise(vim.fn.visualmode())
-    end)
-
-    -- Toggle selection (blockwise)
-    vim.keymap.set('x', '<leader>cb', function()
-        vim.api.nvim_feedkeys(esc, 'nx', false)
-        api.toggle.blockwise(vim.fn.visualmode())
-    end)
-end
-
 M.lspconfig = function (bufnr)
     local function map(mode, l, r, opts)
         opts = opts or {}
@@ -150,14 +109,7 @@ M.lspconfig = function (bufnr)
     )
     map(
         {'n'},
-        "<leader>ra",
-        function()
-            --require("nvchad_ui.renamer").open()
-        end
-    )
-    map(
-        {'n'},
-        "<leader>ca",
+        "<leader>A",
         function()
             vim.lsp.buf.code_action()
         end
@@ -380,6 +332,24 @@ M.hop = function ()
         end,
         {remap=true}
     )
+end
+
+M.bufferline = function ()
+    vim.keymap.set('n', '<leader>bp', "<cmd> BufferLinePick <CR>", {silent = true})
+    vim.keymap.set('n', '<leader>bc', "<cmd> BufferLinePickClose <CR>", {silent = true})
+end
+
+M.cscope = function ()
+    vim.cmd('nmap <C-\\>s :Cscope find s <C-R>=expand("<cword>")<CR><CR>')
+    vim.cmd('nmap <C-\\>g :Cscope find g <C-R>=expand("<cword>")<CR><CR>')
+    vim.cmd('nmap <C-\\>c :Cscope find c <C-R>=expand("<cword>")<CR><CR>')
+    vim.cmd('nmap <C-\\>t :Cscope find t <C-R>=expand("<cword>")<CR><CR>')
+    vim.cmd('nmap <C-\\>e :Cscope find e <C-R>=expand("<cword>")<CR><CR>')
+    vim.cmd('nmap <C-\\>f :Cscope find f <C-R>=expand("<cword>")<CR><CR>')
+    vim.cmd('nmap <C-\\>i :Cscope find i <C-R>=expand("<cword>")<CR><CR>')
+    vim.cmd('nmap <C-\\>d :Cscope find d <C-R>=expand("<cword>")<CR><CR>')
+    vim.cmd('nmap <C-\\>a :Cscope find a <C-R>=expand("<cword>")<CR><CR>')
+    vim.cmd('nmap <C-\\>b :Cscope build <CR><CR>')
 end
 
 return M

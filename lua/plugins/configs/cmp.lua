@@ -34,7 +34,7 @@ local options = {
   window = {
     completion = {
       side_padding = 1,
-      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+      winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,Search:PmenuSel",
       border = border "Border",
       scrollbar = false,
     },

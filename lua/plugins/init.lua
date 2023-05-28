@@ -8,6 +8,7 @@ local default_plugins = {
         "folke/tokyonight.nvim",
         { "catppuccin/nvim", name = "catppuccin" },
         "rebelot/kanagawa.nvim",
+        "Mofiqul/dracula.nvim",
     },
 
     {
@@ -72,6 +73,11 @@ local default_plugins = {
         config = function(_, opts)
             require("nvim-treesitter.configs").setup(opts)
         end,
+        dependencies = {
+            {
+                "HiPhish/nvim-ts-rainbow2",
+            },
+        },
     },
 
     -- git stuff
@@ -130,6 +136,15 @@ local default_plugins = {
                     require "plugins.configs.null-ls"
                 end,
             },
+            {
+                "ray-x/lsp_signature.nvim",
+                opts = function()
+                    return require "plugins.configs.lsp_signature"
+                end,
+                config = function(_, opts)
+                    require "lsp_signature".setup(opts)
+                end,
+            },
         },
         init = function()
             require("lazy").load { plugins = "nvim-lspconfig" }
@@ -185,17 +200,6 @@ local default_plugins = {
         end,
         config = function(_, opts)
             require("cmp").setup(opts)
-        end,
-    },
-
-    {
-        "numToStr/Comment.nvim",
-        -- keys = { "gc", "gb" },
-        init = function()
-            require("mappings").comment()
-        end,
-        config = function()
-            require("Comment").setup()
         end,
     },
 
@@ -299,8 +303,54 @@ local default_plugins = {
         end,
         config = function(_, opts)
             require("bufferline").setup(opts)
+            require("mappings").bufferline()
         end,
-    }
+    },
+    {
+        'akinsho/git-conflict.nvim',
+        version = "*",
+        lazy = false,
+        config = function()
+            require("git-conflict").setup()
+        end,
+    },
+    {
+        'dhananjaylatkar/cscope_maps.nvim', -- cscope keymaps
+        lazy = false,
+        config = function()
+            require('cscope_maps').setup({
+                disable_maps = true, -- true disables my keymaps, only :Cscope will be loaded
+                cscope = {
+                    db_file = "./cscope.out", -- location of cscope db file
+                    exec = "cscope", -- "cscope" or "gtags-cscope"
+                    use_telescope = true, -- true will show results in telescope picker
+                    db_build_cmd_args = { "-bqkv" }, -- args used for db build (:Cscope build)
+                },
+            })
+            require("mappings").cscope()
+        end,
+    },
+
+
+    
+    -- vimscript plugins
+    {
+        'scrooloose/nerdcommenter',
+        lazy = false,
+    },
+
+    {
+        'wellle/targets.vim',
+        lazy = false,
+    },
+    {
+        'tpope/vim-surround',
+        lazy = false,
+    },
+    {
+        'nathangrigg/vim-beancount',
+        lazy = false,
+    },
 }
 -- lazy main entry
 require("lazy").setup(default_plugins, require("plugins.configs.lazy_nvim"))
