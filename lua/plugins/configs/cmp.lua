@@ -1,14 +1,27 @@
 local cmp = require "cmp"
 
+local cmp_fields = {
+  default = { "abbr", "kind", "menu" },
+  atom = { "kind", "abbr", "menu" },
+}
+
 local formatting_style = {
+
+  fields = cmp_fields[vim.g.cmp_style] or { "abbr", "kind", "menu" },
 
   format = function(_, item)
     local icons = require("icons").lspkind
     local icon = icons[item.kind]
 
-    icon = " " .. icon .. " "
-    item.kind = string.format("%s %s", icon, item.kind)
+    if vim.g.cmp_style == "atom" then
+        icon = " " .. icon .. " "
+        item.menu = "   (" .. item.kind .. ")"
+        item.kind = icon
 
+    else
+        icon = " " .. icon .. " "
+        item.kind = string.format("%s %s", icon, item.kind)
+    end
     return item
   end,
 }

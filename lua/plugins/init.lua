@@ -38,11 +38,8 @@ local default_plugins = {
 
     {
         "nvim-tree/nvim-web-devicons",
-        opts = function()
-            return { override = require("icons").devicons }
-        end,
-        config = function(_, opts)
-            require("nvim-web-devicons").setup(opts)
+        config = function()
+            require("nvim-web-devicons").setup()
         end,
     },
 
@@ -193,6 +190,9 @@ local default_plugins = {
                 "hrsh7th/cmp-buffer",
                 "hrsh7th/cmp-path",
             },
+            {
+                'nvim-tree/nvim-web-devicons'
+            },
         },
 
         opts = function()
@@ -331,8 +331,6 @@ local default_plugins = {
         end,
     },
 
-
-    
     -- vimscript plugins
     {
         'scrooloose/nerdcommenter',

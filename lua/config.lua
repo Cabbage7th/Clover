@@ -5,11 +5,13 @@ local g = vim.g
 g.mapleader = ","
 -------------------------------------- globals -----------------------------------------
 g.theme_toggle = { "onedark", "one_light" }
-g.theme = "dracula" -- dracula,onedark/tokyonight/catppuccin/kanagawa/tender
+g.theme = "catppuccin" -- dracula,onedark/tokyonight/catppuccin/kanagawa/tender
 g.background = "dark"
 g.transparency = false
 
 g.lsp_semantic_tokens = false
+
+g.cmp_style = "atom" -- default/vscode(atom)
 
 -------------------------------------- options ------------------------------------------
 opt.laststatus = 3 -- global statusline

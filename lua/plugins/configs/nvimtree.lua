@@ -18,7 +18,7 @@ local options = {
     preserve_window_proportions = true,
   },
   git = {
-    enable = false,
+    enable = true,
     ignore = true,
   },
   filesystem_watchers = {
@@ -39,13 +39,18 @@ local options = {
     },
 
     icons = {
-      show = {
-        file = true,
-        folder = true,
-        folder_arrow = true,
-        git = false,
-      },
-
+        webdev_colors = true,
+        git_placement = "before",
+        modified_placement = "after",
+        padding = " ",
+        symlink_arrow = " ➛ ",
+        show = {
+            file = true,
+            folder = true,
+            folder_arrow = true,
+            git = true,
+            modified = true,
+        },
       glyphs = {
         default = "",
         symlink = "",
