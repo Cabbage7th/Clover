@@ -11,7 +11,7 @@ local M = {
         middle_mouse_command = nil,          -- can be a string | function, | false see "Mouse actions"
         indicator = {
             icon = '▎', -- this should be omitted if indicator style is not 'icon'
-            style = 'icon',    --'icon' | 'underline' | 'none',
+            style = 'underline',    --'icon' | 'underline' | 'none',
         },
         buffer_close_icon = '󰅖',
         modified_icon = '●',
@@ -87,7 +87,7 @@ local M = {
         persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
         -- can also be a table containing 2 custom separators
         -- [focused and unfocused]. eg: { '|', '|' }
-        separator_style = "slope",    -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
+        separator_style = "thick",    -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
         enforce_regular_tabs = true,
         always_show_bufferline = true,
         sort_by = 'insert_at_end',--'insert_after_current' |'insert_at_end' | 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' 
@@ -95,7 +95,272 @@ local M = {
             -- add custom logic
             -- return buffer_a.modified > buffer_b.modified
         -- end
-    }
+    },
+    highlights = {
+        --fill = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+        --},
+        --background = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --tab = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --tab_selected = {
+            --fg = tabline_sel_bg,
+            --bg = '<colour-value-here>'
+        --},
+        --tab_close = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --close_button = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --close_button_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --close_button_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --buffer_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --buffer_selected = {
+            --fg = normal_fg,
+            --bg = '<colour-value-here>',
+            --bold = true,
+            --italic = true,
+        --},
+        --numbers = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+        --},
+        --numbers_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+        --},
+        --numbers_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --bold = true,
+            --italic = true,
+        --},
+        --diagnostic = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+        --},
+        --diagnostic_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+        --},
+        --diagnostic_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --bold = true,
+            --italic = true,
+        --},
+        --hint = {
+            --fg = '<colour-value-here>',
+            --sp = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --hint_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --hint_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --sp = '<colour-value-here>'
+            --bold = true,
+            --italic = true,
+        --},
+        --hint_diagnostic = {
+            --fg = '<colour-value-here>',
+            --sp = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --hint_diagnostic_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --hint_diagnostic_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --sp = '<colour-value-here>'
+            --bold = true,
+            --italic = true,
+        --},
+        --info = {
+            --fg = '<colour-value-here>',
+            --sp = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --info_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --info_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --sp = '<colour-value-here>'
+            --bold = true,
+            --italic = true,
+        --},
+        --info_diagnostic = {
+            --fg = '<colour-value-here>',
+            --sp = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --info_diagnostic_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --info_diagnostic_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --sp = '<colour-value-here>'
+            --bold = true,
+            --italic = true,
+        --},
+        --warning = {
+            --fg = '<colour-value-here>',
+            --sp = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --warning_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --warning_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --sp = '<colour-value-here>'
+            --bold = true,
+            --italic = true,
+        --},
+        --warning_diagnostic = {
+            --fg = '<colour-value-here>',
+            --sp = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --warning_diagnostic_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --warning_diagnostic_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --sp = warning_diagnostic_fg
+            --bold = true,
+            --italic = true,
+        --},
+        --error = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --sp = '<colour-value-here>'
+        --},
+        --error_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --error_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --sp = '<colour-value-here>'
+            --bold = true,
+            --italic = true,
+        --},
+        --error_diagnostic = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --sp = '<colour-value-here>'
+        --},
+        --error_diagnostic_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --error_diagnostic_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --sp = '<colour-value-here>'
+            --bold = true,
+            --italic = true,
+        --},
+        --modified = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --modified_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --modified_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --duplicate_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+            --italic = true,
+        --},
+        --duplicate_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+            --italic = true
+        --},
+        --duplicate = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+            --italic = true
+        --},
+        --separator_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --separator_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        separator = {
+            --fg = '<colour-value-here>',
+            bg = '#129f91'
+        },
+        --indicator_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>'
+        --},
+        --pick_selected = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --bold = true,
+            --italic = true,
+        --},
+        --pick_visible = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --bold = true,
+            --italic = true,
+        --},
+        --pick = {
+            --fg = '<colour-value-here>',
+            --bg = '<colour-value-here>',
+            --bold = true,
+            --italic = true,
+        --},
+        --offset_separator = {
+            --fg = win_separator_fg,
+            --bg = separator_background_color,
+        --},
+    },
 }
 
 return M

@@ -330,8 +330,26 @@ local default_plugins = {
             require("mappings").cscope()
         end,
     },
+    {
+        'ThePrimeagen/refactoring.nvim',
+        lazy = false,
+        dependencies = {
+            {"nvim-lua/plenary.nvim"},
+            {"nvim-treesitter/nvim-treesitter"}
+        },
+        config = function()
+            require('refactoring').setup({})
+        end,
+    },
+    {
+        'RaafatTurki/hex.nvim',
+        lazy = false,
+        config = function()
+            require('hex').setup({})
+        end,
+    },
 
-    -- vimscript plugins
+---- vimscript plugins
     {
         'scrooloose/nerdcommenter',
         lazy = false,
