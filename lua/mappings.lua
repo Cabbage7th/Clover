@@ -172,8 +172,10 @@ M.lspconfig = function (bufnr)
     )
 end
 
-M.nvimtree = function ()
-    vim.keymap.set({'n'}, "<C-e>", "<cmd> NvimTreeToggle <CR>")
+M.neo_tree = function ()
+    vim.keymap.set({'n'}, "<C-e>", "<cmd> NeoTreeShowToggle <CR>")
+    vim.keymap.set({'n'}, "<leader>tg", "<cmd> Neotree git_status <CR>")
+    vim.keymap.set({'n'}, "<leader>tt", "<cmd> Neotree document_symbols <CR>")
 end
 
 M.telescope = function ()
@@ -183,7 +185,7 @@ M.telescope = function ()
     vim.keymap.set("n", "<leader>fr", "<cmd> Telescope live_grep <CR>")
     vim.keymap.set("n", "<leader>fw", "<cmd> Telescope grep_string <CR>")
     vim.keymap.set("n", "<leader>fb", "<cmd> Telescope buffers <CR>")
-    vim.keymap.set("n", "<leader>fh", "<cmd> Telescope help_tags <CR>")
+    vim.keymap.set("n", "<leader>ft", "<cmd> Telescope tags <CR>")
     vim.keymap.set("n", "<leader>fo", "<cmd> Telescope oldfiles <CR>")
     vim.keymap.set("n", "<leader>fs", "<cmd> Telescope current_buffer_fuzzy_find <CR>")
     vim.keymap.set("n", "<leader>fz", "<cmd> Telescope lsp_document_symbols <CR>")
@@ -308,7 +310,7 @@ M.gitsigns = function (bufnr)
     )
     map(
         {'n'},
-        "<leader>td",
+        "<leader>gd",
         function()
             require("gitsigns").toggle_deleted()
         end
@@ -349,7 +351,7 @@ M.cscope = function ()
     vim.cmd('nmap <C-\\>i :Cscope find i <C-R>=expand("<cword>")<CR><CR>')
     vim.cmd('nmap <C-\\>d :Cscope find d <C-R>=expand("<cword>")<CR><CR>')
     vim.cmd('nmap <C-\\>a :Cscope find a <C-R>=expand("<cword>")<CR><CR>')
-    vim.cmd('nmap <C-\\>b :Cscope build <CR><CR>')
+    --vim.cmd('nmap <C-\\>b :Cscope build <CR><CR>')
 end
 
 return M

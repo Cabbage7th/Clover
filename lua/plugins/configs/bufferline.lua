@@ -61,8 +61,8 @@ local M = {
         end, ]]
         offsets = {
             {
-                filetype = "NvimTree",
-                text = "󰉋  FileExplorer",  -- or function ,
+                filetype = "neo-tree",
+                text = "󰉋  neo-tree",  -- or function ,
                 text_align = "left",     -- "left" | "center" | "right"
                 separator = true,
             }

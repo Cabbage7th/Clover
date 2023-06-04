@@ -202,25 +202,6 @@ local default_plugins = {
             require("cmp").setup(opts)
         end,
     },
-
-    -- file managing , picker etc
-    {
-        "nvim-tree/nvim-tree.lua",
-        cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-        lazy = false,
-        init = function()
-            require("lazy").load { plugins = "nvim-tree.lua" }
-            require("mappings").nvimtree()
-        end,
-        opts = function()
-            return require "plugins.configs.nvimtree"
-        end,
-        config = function(_, opts)
-            require("nvim-tree").setup(opts)
-            vim.g.nvimtree_side = opts.view.side
-        end,
-    },
-
     {
         "nvim-telescope/telescope.nvim",
         dependencies = { 'nvim-lua/plenary.nvim' },
@@ -347,6 +328,46 @@ local default_plugins = {
         config = function()
             require('hex').setup({})
         end,
+    },
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        lazy = false,
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+            {
+                -- only needed if you want to use the commands with "_with_window_picker" suffix
+                's1n7ax/nvim-window-picker',
+                tag = "v1.*",
+                config = function()
+                    require'window-picker'.setup({
+                        autoselect_one = true,
+                        include_current = false,
+                        filter_rules = {
+                            -- filter using buffer options
+                            bo = {
+                                -- if the file type is one of following, the window will be ignored
+                                filetype = { 'neo-tree', "neo-tree-popup", "notify" },
+
+                                -- if the buffer type is one of following, the window will be ignored
+                                buftype = { 'terminal', "quickfix" },
+                            },
+                        },
+                        other_win_hl_color = '#e35e4f',
+                    })
+                end,
+            }
+        },
+        opts = function()
+            return require "plugins.neo_tree"
+        end,
+        config = function(_, opts)
+            require("neo-tree").setup(opts)
+            require("mappings").neo_tree()
+        end,
+
     },
 
 ---- vimscript plugins
