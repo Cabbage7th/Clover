@@ -49,7 +49,7 @@ local default_plugins = {
             require("lazy").load { plugins = "indent-blankline.nvim" }
         end,
         opts = function()
-            return require("plugins.configs.blankline").blankline
+            return require("plugins.blankline").blankline
         end,
         config = function(_, opts)
             require("mappings").blankline()
@@ -65,7 +65,7 @@ local default_plugins = {
         cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
         build = ":TSUpdate",
         opts = function()
-            return require "plugins.configs.treesitter"
+            return require "plugins.treesitter"
         end,
         config = function(_, opts)
             require("nvim-treesitter.configs").setup(opts)
@@ -97,7 +97,7 @@ local default_plugins = {
             })
         end,
         opts = function()
-            return require("plugins.configs.gitsigns").gitsigns
+            return require("plugins.gitsigns").gitsigns
         end,
         config = function(_, opts)
             require("gitsigns").setup(opts)
@@ -109,7 +109,7 @@ local default_plugins = {
         "williamboman/mason.nvim",
         cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
         opts = function()
-            return require "plugins.configs.mason"
+            return require "plugins.mason"
         end,
         config = function(_, opts)
             require("mason").setup(opts)
@@ -130,13 +130,13 @@ local default_plugins = {
             {
                 "jose-elias-alvarez/null-ls.nvim",
                 config = function()
-                    require "plugins.configs.null-ls"
+                    require "plugins.null-ls"
                 end,
             },
             {
                 "ray-x/lsp_signature.nvim",
                 opts = function()
-                    return require "plugins.configs.lsp_signature"
+                    return require "plugins.lsp_signature"
                 end,
                 config = function(_, opts)
                     require "lsp_signature".setup(opts)
@@ -147,7 +147,7 @@ local default_plugins = {
             require("lazy").load { plugins = "nvim-lspconfig" }
         end,
         config = function()
-            require "plugins.configs.lspconfig"
+            require "plugins.lspconfig"
         end,
     },
 
@@ -162,7 +162,7 @@ local default_plugins = {
                 dependencies = "rafamadriz/friendly-snippets",
                 opts = { history = true, updateevents = "TextChanged,TextChangedI" },
                 config = function(_, opts)
-                    require("plugins.configs.luasnip").luasnip(opts)
+                    require("plugins.luasnip").luasnip(opts)
                 end,
             },
 
@@ -196,7 +196,7 @@ local default_plugins = {
         },
 
         opts = function()
-            return require "plugins.configs.cmp"
+            return require "plugins.cmp"
         end,
         config = function(_, opts)
             require("cmp").setup(opts)
@@ -212,7 +212,7 @@ local default_plugins = {
         end,
 
         opts = function()
-            return require "plugins.configs.telescope"
+            return require "plugins.telescope"
         end,
 
         config = function(_, opts)
@@ -229,7 +229,7 @@ local default_plugins = {
             require("mappings").whichkey()
         end,
         opts = function()
-            return require "plugins.configs.whichkey"
+            return require "plugins.whichkey"
         end,
         config = function(_, opts)
             require("which-key").setup(opts)
@@ -266,7 +266,7 @@ local default_plugins = {
             require("lazy").load { plugins = "lualine.nvim" }
         end,
         opts = function()
-            return require "plugins.configs.lualine"
+            return require "plugins.lualine"
         end,
         config = function(_, opts)
             require("lualine").setup(opts)
@@ -280,7 +280,7 @@ local default_plugins = {
             require("lazy").load { plugins = "bufferline.nvim" }
         end,
         opts = function()
-            return require "plugins.configs.bufferline"
+            return require "plugins.bufferline"
         end,
         config = function(_, opts)
             require("bufferline").setup(opts)
@@ -390,4 +390,4 @@ local default_plugins = {
     },
 }
 -- lazy main entry
-require("lazy").setup(default_plugins, require("plugins.configs.lazy_nvim"))
+require("lazy").setup(default_plugins, require("plugins.lazy_nvim"))
