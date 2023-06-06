@@ -22,6 +22,10 @@ M.general_mapping = function ()
     vim.keymap.set('n', "<C-l>", "<C-w>l")
     vim.keymap.set('n', "<C-j>", "<C-w>j")
     vim.keymap.set('n', "<C-k>", "<C-w>k")
+    -- switch buffers
+    vim.keymap.set('n', "<S-j>", "<cmd> bprevious <CR>")
+    vim.keymap.set('n', "<S-k>", "<cmd> bnext <CR>")
+    -- switch tabs
 
     -- save
     vim.keymap.set('n', "<C-s>", "<cmd> w <CR>")
@@ -74,7 +78,7 @@ M.lspconfig = function (bufnr)
     )
     map(
         {'n'},
-        "K",
+        "<leader>sp",
         function()
             vim.lsp.buf.hover()
         end
@@ -170,6 +174,19 @@ M.lspconfig = function (bufnr)
             vim.lsp.buf.format { async = true }
         end
     )
+    map(
+        {'v'},
+        "<leader>fm",
+        function()
+            vim.lsp.buf.format {
+                async = true,
+                range = {
+                    ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
+                    ["end"] = vim.api.nvim_buf_get_mark(0, ">")
+                },
+            }
+        end
+    )
 end
 
 M.neo_tree = function ()
@@ -234,21 +251,20 @@ end
 
 -- TODO : key conflict
 M.blankline = function ()
-    -- vim.keymap.set(
-    --     {'n'},
-    --     "<leader>cc",
-    --     function()
-    --         local ok, start = require("indent_blankline.utils").get_current_context(
-    --             vim.g.indent_blankline_context_patterns,
-    --             vim.g.indent_blankline_use_treesitter_scope
-    --             )
-    --
-    --         if ok then
-    --             vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
-    --             vim.cmd [[normal! _]]
-    --         end
-    --     end
-    -- )
+     vim.keymap.set(
+         {'n'},
+         "<leader>[[",
+         function()
+             local ok, start = require("indent_blankline.utils").get_current_context(
+                 vim.g.indent_blankline_context_patterns,
+                 vim.g.indent_blankline_use_treesitter_scope
+                 )
+             if ok then
+                 vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
+                 vim.cmd [[normal! _]]
+             end
+         end
+     )
 end
 
 M.gitsigns = function (bufnr)

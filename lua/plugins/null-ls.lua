@@ -1,25 +1,17 @@
-local present, null_ls = pcall(require, "null-ls")
+local null_ls = require("null-ls")
 
-if not present then
-  return
-end
+null_ls.setup({
+    debug = true,
+    sources = {
+        -- webdev stuff
+        null_ls.builtins.formatting.deno_fmt,                                               -- choosed deno for ts/js files cuz its very fast!
+        null_ls.builtins.formatting.prettier.with({ filetypes = { "html", "markdown", "css" } }), -- so prettier works only on these filetypes
 
-local b = null_ls.builtins
+        -- Lua
+        null_ls.builtins.formatting.stylua,
 
-local sources = {
-
-  -- webdev stuff
-  b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
-  b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
-
-  -- Lua
-  b.formatting.stylua,
-
-  -- cpp
-  b.formatting.clang_format,
-}
-
-null_ls.setup {
-  debug = true,
-  sources = sources,
-}
+        -- cpp
+        null_ls.builtins.formatting.clang_format,
+        null_ls.builtins.completion.spell,
+    },
+})
