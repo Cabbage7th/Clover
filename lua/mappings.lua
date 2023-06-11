@@ -78,7 +78,7 @@ M.lspconfig = function (bufnr)
     )
     map(
         {'n'},
-        "<leader>sp",
+        "<leader>H",
         function()
             vim.lsp.buf.hover()
         end
@@ -90,13 +90,13 @@ M.lspconfig = function (bufnr)
             vim.lsp.buf.implementation()
         end
     )
-    map(
-        {'n'},
-        "gr",
-        function()
-            vim.lsp.buf.references()
-        end
-    )
+    --map(
+        --{'n'},
+        --"gr",
+        --function()
+            --vim.lsp.buf.references()
+        --end
+    --)
     map(
         {'n'},
         "<leader>ls",
@@ -118,30 +118,30 @@ M.lspconfig = function (bufnr)
             vim.lsp.buf.code_action()
         end
     )
+    --map(
+        --{'n'},
+        --"<leader>df",
+        --function()
+            --vim.diagnostic.open_float { border = "rounded" }
+        --end
+    --)
     map(
         {'n'},
-        "<leader>f",
-        function()
-            vim.diagnostic.open_float { border = "rounded" }
-        end
-    )
-    map(
-        {'n'},
-        "[g",
+        "[e",
         function()
             vim.diagnostic.goto_prev()
         end
     )
     map(
         {'n'},
-        "]g",
+        "]e",
         function()
             vim.diagnostic.goto_next()
         end
     )
     map(
         {'n'},
-        "<leader>q",
+        "<leader>dl",
         function()
             vim.diagnostic.setloclist()
         end
@@ -165,6 +165,13 @@ M.lspconfig = function (bufnr)
         "<leader>wa",
         function()
             vim.lsp.buf.add_workspace_folder()
+        end
+    )
+    map(
+        {'n'},
+        "<leader>rn",
+        function()
+            vim.lsp.buf.rename()
         end
     )
     map(
@@ -204,8 +211,14 @@ M.telescope = function ()
     vim.keymap.set("n", "<leader>fb", "<cmd> Telescope buffers <CR>")
     vim.keymap.set("n", "<leader>ft", "<cmd> Telescope tags <CR>")
     vim.keymap.set("n", "<leader>fo", "<cmd> Telescope oldfiles <CR>")
-    vim.keymap.set("n", "<leader>fs", "<cmd> Telescope current_buffer_fuzzy_find <CR>")
-    vim.keymap.set("n", "<leader>fz", "<cmd> Telescope lsp_document_symbols <CR>")
+    vim.keymap.set("n", "<leader>fz", "<cmd> Telescope current_buffer_fuzzy_find <CR>")
+
+    -- lsp
+    vim.keymap.set("n", "<leader>fs", "<cmd> Telescope lsp_document_symbols <CR>")
+    vim.keymap.set("n", "gr", "<cmd> Telescope lsp_references <CR>")
+    vim.keymap.set("n", "<leader>fd", "<cmd> Telescope diagnostics <CR>")
+    vim.keymap.set("n", "<leader>gi", "<cmd> Telescope lsp_incoming_calls <CR>")
+    vim.keymap.set("n", "<leader>go", "<cmd> Telescope lsp_outgoing_calls <CR>")
 
     -- git
     vim.keymap.set("n", "<leader>cm", "<cmd> Telescope git_commits <CR>")

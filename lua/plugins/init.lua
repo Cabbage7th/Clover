@@ -367,21 +367,6 @@ local default_plugins = {
         end,
 
     },
-    {
-        'ray-x/navigator.lua',
-        requires = {
-            { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' },
-            { 'neovim/nvim-lspconfig' },
-        },
-        lazy = false,
-        opts = function()
-            return require "plugins.navigator"
-        end,
-        config = function(_, opts)
-            require('navigator').setup(opts)
-        end,
-
-    },
 ---- vimscript plugins
     {
         'scrooloose/nerdcommenter',
