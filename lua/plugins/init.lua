@@ -140,6 +140,12 @@ local default_plugins = {
                     require "lsp_signature".setup(opts)
                 end,
             },
+            {
+                "SmiteshP/nvim-navic",
+                config = function()
+                    require "nvim-navic".setup()
+                end,
+            },
         },
         init = function()
             require("lazy").load { plugins = "nvim-lspconfig" }
@@ -367,6 +373,53 @@ local default_plugins = {
         end,
 
     },
+    {
+        'ldelossa/litee-calltree.nvim',
+        lazy = false,
+        dependencies = {
+            'ldelossa/litee.nvim',
+            config = function()
+                -- configure the litee.nvim library 
+                require('litee.lib').setup({})
+            end,
+        },
+        config = function()
+            -- configure litee-calltree.nvim
+            require('litee.calltree').setup({})
+        end,
+    },
+    {
+        'stevearc/aerial.nvim',
+        opts = {},
+        lazy = false,
+        -- Optional dependencies
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons"
+        },
+        config = function()
+            require('aerial').setup({
+                    -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+                    on_attach = function(bufnr)
+                        -- Jump forwards/backwards with '{' and '}'
+                        vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', {buffer = bufnr})
+                        vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', {buffer = bufnr})
+                    end
+                })
+            -- You probably also want to set a keymap to toggle aerial
+            vim.keymap.set('n', '<leader>tt', '<cmd>AerialToggle!<CR>')
+        end,
+
+    },
+    --{
+        --"rebelot/heirline.nvim",
+        --opts = function()
+            --return require "plugins.heirline"
+        --end,
+        --config = function(_, opts)
+            --require("heirline").setup(opts)
+        --end
+    --},
 ---- vimscript plugins
     {
         'scrooloose/nerdcommenter',

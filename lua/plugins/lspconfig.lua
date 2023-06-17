@@ -4,14 +4,16 @@ local M = {}
 M.on_attach = function(client, bufnr)
     require("mappings").lspconfig(bufnr)
 
-  if not vim.g.lsp_semantic_tokens then
-    client.server_capabilities.semanticTokensProvider = nil
-  end
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
+    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+    for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
+    -- attach nvim-navic
+    local navic = require("nvim-navic")
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+    end
 
 end
 

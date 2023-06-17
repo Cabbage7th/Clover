@@ -199,7 +199,7 @@ end
 M.neo_tree = function ()
     vim.keymap.set({'n'}, "<C-e>", "<cmd> NeoTreeShowToggle <CR>")
     vim.keymap.set({'n'}, "<leader>tg", "<cmd> Neotree git_status <CR>")
-    vim.keymap.set({'n'}, "<leader>tt", "<cmd> Neotree document_symbols <CR>")
+    --vim.keymap.set({'n'}, "<leader>tt", "<cmd> Neotree document_symbols <CR>")
 end
 
 M.telescope = function ()

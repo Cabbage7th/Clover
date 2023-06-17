@@ -9,8 +9,6 @@ g.theme = "catppuccin" -- dracula,onedark/tokyonight/catppuccin/kanagawa/tender
 g.background = "dark"
 g.transparency = false
 
-g.lsp_semantic_tokens = false
-
 g.cmp_style = "atom" -- default/vscode(atom)
 
 -------------------------------------- options ------------------------------------------
