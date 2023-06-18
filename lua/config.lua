@@ -5,7 +5,7 @@ local g = vim.g
 g.mapleader = ","
 -------------------------------------- globals -----------------------------------------
 g.theme_toggle = { "onedark", "one_light" }
-g.theme = "catppuccin" -- dracula,onedark/tokyonight/catppuccin/kanagawa/tender
+g.theme = "tokyonight" -- dracula,onedark/tokyonight/catppuccin/kanagawa/tender
 g.background = "dark"
 g.transparency = false
 
