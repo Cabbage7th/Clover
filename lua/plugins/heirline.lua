@@ -1,22 +1,14 @@
 local conditions = require("heirline.conditions")
-local utils = require("heirline.utils")
--- The easy way.
-local Navic = {
-    condition = function() return require("nvim-navic").is_available() end,
-    provider = function()
-        return require("nvim-navic").get_location({highlight=true})
-    end,
-    update = 'CursorMoved'
-}
+--local utils = require("heirline.utils")
 
+local WinBar = require "plugins.heirline.winbar"
+local TabLine = require "plugins.heirline.tabline"
+--local StatusLine = require "plugins.heirline.statusline"
+local colors = require "plugins.heirline.components".colors
 local M = {
-    --statusline = {
-    --},
-    winbar = {
-        Navic,
-    },
-    --tabline = {
-    --},
+    --statusline = StatusLine,
+    winbar = WinBar,
+    tabline = TabLine,
     --statuscolumn = {
 
     --},
@@ -29,6 +21,7 @@ local M = {
                 filetype = { "aerial", "neo%-tree", "^git.*", "fugitive", "Trouble", "dashboard" },
             }, args.buf)
         end,
+        colors = colors,
     },
 }
 

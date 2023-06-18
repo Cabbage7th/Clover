@@ -365,10 +365,10 @@ M.hop = function ()
     )
 end
 
-M.bufferline = function ()
-    vim.keymap.set('n', '<leader>bp', "<cmd> BufferLinePick <CR>", {silent = true})
-    vim.keymap.set('n', '<leader>bc', "<cmd> BufferLinePickClose <CR>", {silent = true})
-end
+--M.bufferline = function ()
+    --vim.keymap.set('n', '<leader>bp', "<cmd> BufferLinePick <CR>", {silent = true})
+    --vim.keymap.set('n', '<leader>bc', "<cmd> BufferLinePickClose <CR>", {silent = true})
+--end
 
 M.cscope = function ()
     vim.cmd('nmap <C-\\>s :Cscope find s <C-R>=expand("<cword>")<CR><CR>')
