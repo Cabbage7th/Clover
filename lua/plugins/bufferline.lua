@@ -61,8 +61,8 @@ local M = {
         end, ]]
         offsets = {
             {
-                filetype = "neo-tree",
-                text = "󰡄  NeoTree",  -- or function ,
+                filetype = "NvimTree",
+                text = "󰉋  FileExplorer",  -- or function ,
                 text_align = "left",     -- "left" | "center" | "right"
                 separator = true,
             }
@@ -89,7 +89,7 @@ local M = {
         -- [focused and unfocused]. eg: { '|', '|' }
         separator_style = "thick",    -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
         enforce_regular_tabs = true,
-        always_show_bufferline = false,
+        always_show_bufferline = true,
         sort_by = 'insert_at_end',--'insert_after_current' |'insert_at_end' | 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' 
        -- | function(buffer_a, buffer_b)
             -- add custom logic
