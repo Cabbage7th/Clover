@@ -133,11 +133,8 @@ local default_plugins = {
             },
             {
                 "ray-x/lsp_signature.nvim",
-                opts = function()
-                    return require "plugins.lsp_signature"
-                end,
-                config = function(_, opts)
-                    require "lsp_signature".setup(opts)
+                config = function()
+                    require "lsp_signature".setup()
                 end,
             },
             {
@@ -394,11 +391,8 @@ local default_plugins = {
             "SmiteshP/nvim-navic",
         },
         lazy = false,
-        opts = function()
-            return require "plugins.heirline"
-        end,
-        config = function(_, opts)
-            require("heirline").setup(opts)
+        config = function()
+            require("plugins.heirline")
         end
     },
 ---- vimscript plugins

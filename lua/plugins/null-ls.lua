@@ -12,6 +12,6 @@ null_ls.setup({
 
         -- cpp
         null_ls.builtins.formatting.clang_format,
-        null_ls.builtins.completion.spell,
+        --null_ls.builtins.completion.spell,
     },
 })

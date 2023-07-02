@@ -1,11 +1,15 @@
 local conditions = require("heirline.conditions")
---local utils = require("heirline.utils")
+local utils = require("heirline.utils")
 
 local WinBar = require "plugins.heirline.winbar"
 local TabLine = require "plugins.heirline.tabline"
 --local StatusLine = require "plugins.heirline.statusline"
 local colors = require "plugins.heirline.components".colors
-local M = {
+
+-- configure color first
+local setup_colors = colors
+require("heirline").load_colors(setup_colors)
+require("heirline").setup({
     --statusline = StatusLine,
     winbar = WinBar,
     tabline = TabLine,
@@ -21,8 +25,18 @@ local M = {
                 filetype = { "aerial", "neo%-tree", "^git.*", "fugitive", "Trouble", "dashboard" },
             }, args.buf)
         end,
-        colors = colors,
     },
-}
+})
+vim.api.nvim_create_augroup("Heirline", { clear = true })
+vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = function()
+        utils.on_colorscheme(setup_colors)
+    end,
+    group = "Heirline",
+})
 
-return M
+
+-- Yep, with heirline we're driving manual!
+vim.o.showtabline = 2   -- show tabline always
+vim.cmd([[au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif]])
+
