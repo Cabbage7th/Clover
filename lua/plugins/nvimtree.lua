@@ -6,7 +6,7 @@ local options = {
   hijack_netrw = true,
   hijack_cursor = true,
   hijack_unnamed_buffer_when_opening = false,
-  sync_root_with_cwd = true,
+  sync_root_with_cwd = false,
   update_focused_file = {
     enable = true,
     update_root = false,
@@ -16,6 +16,8 @@ local options = {
     side = "left",
     width = 30,
     preserve_window_proportions = true,
+    cursorline = true,
+    signcolumn = "yes",
   },
   git = {
     enable = true,
@@ -30,17 +32,26 @@ local options = {
     },
   },
   renderer = {
-    root_folder_label = false,
-    highlight_git = false,
+    root_folder_label = true,
+    highlight_git = true,
     highlight_opened_files = "none",
+    highlight_modified = "none",
 
     indent_markers = {
-      enable = false,
+      enable = true,
+      inline_arrows = true,
+      icons = {
+        corner = "└",
+        edge = "│",
+        item = "│",
+        bottom = "─",
+        none = " ",
+      },
     },
 
     icons = {
         webdev_colors = true,
-        git_placement = "before",
+        git_placement = "after",
         modified_placement = "after",
         padding = " ",
         symlink_arrow = " ➛ ",
@@ -55,10 +66,10 @@ local options = {
         default = "",
         symlink = "",
         folder = {
-          default = "",
+          default = "󰉋",
           empty = "",
-          empty_open = "",
-          open = "",
+          empty_open = "",
+          open = "",
           symlink = "",
           symlink_open = "",
           arrow_open = "",
@@ -86,11 +97,13 @@ local options = {
           -- remove a default
           vim.keymap.del('n', '<C-v>', { buffer = bufnr })
           vim.keymap.del('n', '<C-x>', { buffer = bufnr })
+          vim.keymap.del('n', '<C-t>', { buffer = bufnr })
           vim.keymap.del('n', '<C-e>', { buffer = bufnr })
 
           -- add your mappings
-          vim.keymap.set('n', 'i', api.node.open.vertical,   opts('Open: Vertical Split'))
-          vim.keymap.set('n', 's', api.node.open.horizontal, opts('Open: Horizontal Split'))
+          vim.keymap.set('n', 's', api.node.open.vertical,   opts('Open: Vertical Split'))
+          vim.keymap.set('n', 'S', api.node.open.horizontal, opts('Open: Horizontal Split'))
+          vim.keymap.set('n', 't', api.node.open.tab, opts('Open: Tab'))
       end,
 }
 
