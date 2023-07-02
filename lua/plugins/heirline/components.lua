@@ -3,154 +3,25 @@ local M = {}
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
 
-
-local function set_colors()
-    local function get_hlgroup(name, fallback)
-      if vim.fn.hlexists(name) == 1 then
-        local hl
-        if vim.api.nvim_get_hl then -- check for new neovim 0.9 API
-          hl = vim.api.nvim_get_hl(0, { name = name, link = false })
-          if not hl.fg then hl.fg = fallback.fg end
-          if not hl.bg then hl.bg = fallback.bg end
-        else
-          hl = vim.api.nvim_get_hl_by_name(name, vim.o.termguicolors)
-          if not hl.foreground then hl.foreground = fallback.fg end
-          if not hl.background then hl.background = fallback.bg end
-          hl.fg, hl.bg = hl.foreground, hl.background
-          hl.ctermfg, hl.ctermbg = hl.fg, hl.bg
-          hl.sp = hl.special
-        end
-        return hl
-      end
-      return fallback or {}
-    end
-
-    local C = {
-      none = "NONE",
-      fg = "#abb2bf",
-      bg = "#2c323c",
-      dark_bg = "#1e222a",
-      blue = "#61afef",
-      green = "#98c379",
-      grey = "#5c6370",
-      bright_grey = "#777d86",
-      dark_grey = "#5c5c5c",
-      orange = "#ff9640",
-      purple = "#c678dd",
-      bright_purple = "#a9a1e1",
-      red = "#e06c75",
-      bright_red = "#ec5f67",
-      white = "#c9c9c9",
-      yellow = "#e5c07b",
-      bright_yellow = "#ebae34",
-    }
-
-    local Normal = get_hlgroup("Normal", { fg = C.fg, bg = C.bg })
-    local Comment = get_hlgroup("Comment", { fg = C.bright_grey, bg = C.bg })
-    local Error = get_hlgroup("Error", { fg = C.red, bg = C.bg })
-    local StatusLine = get_hlgroup("StatusLine", { fg = C.fg, bg = C.dark_bg })
-    local TabLine = get_hlgroup("TabLine", { fg = C.grey, bg = C.none })
-    local TabLineFill = get_hlgroup("TabLineFill", { fg = C.fg, bg = C.dark_bg })
-    local TabLineSel = get_hlgroup("TabLineSel", { fg = C.fg, bg = C.none })
-    local WinBar = get_hlgroup("WinBar", { fg = C.bright_grey, bg = C.bg })
-    local WinBarNC = get_hlgroup("WinBarNC", { fg = C.grey, bg = C.bg })
-    local Conditional = get_hlgroup("Conditional", { fg = C.bright_purple, bg = C.dark_bg })
-    local String = get_hlgroup("String", { fg = C.green, bg = C.dark_bg })
-    local TypeDef = get_hlgroup("TypeDef", { fg = C.yellow, bg = C.dark_bg })
-    local GitSignsAdd = get_hlgroup("GitSignsAdd", { fg = C.green, bg = C.dark_bg })
-    local GitSignsChange = get_hlgroup("GitSignsChange", { fg = C.orange, bg = C.dark_bg })
-    local GitSignsDelete = get_hlgroup("GitSignsDelete", { fg = C.bright_red, bg = C.dark_bg })
-    local DiagnosticError = get_hlgroup("DiagnosticError", { fg = C.bright_red, bg = C.dark_bg })
-    local DiagnosticWarn = get_hlgroup("DiagnosticWarn", { fg = C.orange, bg = C.dark_bg })
-    local DiagnosticInfo = get_hlgroup("DiagnosticInfo", { fg = C.white, bg = C.dark_bg })
-    local DiagnosticHint = get_hlgroup("DiagnosticHint", { fg = C.bright_yellow, bg = C.dark_bg })
-    local HeirlineInactive = get_hlgroup("HeirlineInactive", { bg = nil }).bg or C.dark_grey
-    local HeirlineNormal = get_hlgroup("HeirlineNormal", { bg = nil }).bg or C.blue
-    local HeirlineInsert = get_hlgroup("HeirlineInsert", { bg = nil }).bg or C.green
-    local HeirlineVisual = get_hlgroup("HeirlineVisual", { bg = nil }).bg or C.purple
-    local HeirlineReplace = get_hlgroup("HeirlineReplace", { bg = nil }).bg or C.bright_red
-    local HeirlineCommand = get_hlgroup("HeirlineCommand", { bg = nil }).bg or C.bright_yellow
-    local HeirlineTerminal = get_hlgroup("HeirlineTerminal", { bg = nil }).bg or HeirlineInsert
-
-    local colors = {
-      close_fg = Error.fg,
-      fg = StatusLine.fg,
-      bg = StatusLine.bg,
-      section_fg = StatusLine.fg,
-      section_bg = StatusLine.bg,
-      git_branch_fg = Conditional.fg,
-      mode_fg = StatusLine.bg,
-      treesitter_fg = String.fg,
-      scrollbar = TypeDef.fg,
-      git_added = GitSignsAdd.fg,
-      git_changed = GitSignsChange.fg,
-      git_removed = GitSignsDelete.fg,
-      diag_ERROR = DiagnosticError.fg,
-      diag_WARN = DiagnosticWarn.fg,
-      diag_INFO = DiagnosticInfo.fg,
-      diag_HINT = DiagnosticHint.fg,
-      winbar_fg = WinBar.fg,
-      winbar_bg = WinBar.bg,
-      winbarnc_fg = WinBarNC.fg,
-      winbarnc_bg = WinBarNC.bg,
-      tabline_bg = TabLineFill.bg,
-      tabline_fg = TabLineFill.bg,
-      buffer_fg = Comment.fg,
-      buffer_path_fg = WinBarNC.fg,
-      buffer_close_fg = Comment.fg,
-      buffer_bg = TabLineFill.bg,
-      buffer_active_fg = Normal.fg,
-      buffer_active_path_fg = WinBarNC.fg,
-      buffer_active_close_fg = Error.fg,
-      buffer_active_bg = Normal.bg,
-      buffer_visible_fg = Normal.fg,
-      buffer_visible_path_fg = WinBarNC.fg,
-      buffer_visible_close_fg = Error.fg,
-      buffer_visible_bg = Normal.bg,
-      buffer_overflow_fg = Comment.fg,
-      buffer_overflow_bg = TabLineFill.bg,
-      buffer_picker_fg = Error.fg,
-      tab_close_fg = Error.fg,
-      tab_close_bg = TabLineFill.bg,
-      tab_fg = TabLine.fg,
-      tab_bg = TabLine.bg,
-      tab_active_fg = TabLineSel.fg,
-      tab_active_bg = TabLineSel.bg,
-      inactive = HeirlineInactive,
-      normal = HeirlineNormal,
-      insert = HeirlineInsert,
-      visual = HeirlineVisual,
-      replace = HeirlineReplace,
-      command = HeirlineCommand,
-      terminal = HeirlineTerminal,
-    }
-    return colors
-end
-M.colors = set_colors()
---{
-    --test_color = "red",
-    --set_colors()
---}
-
---M.colors = {
-    --bright_bg = utils.get_highlight("Folded").bg,
-    --bright_fg = utils.get_highlight("Folded").fg,
-    --red = utils.get_highlight("DiagnosticError").fg,
-    --dark_red = utils.get_highlight("DiffDelete").bg,
-    --green = utils.get_highlight("String").fg,
-    --blue = utils.get_highlight("Function").fg,
-    --gray = utils.get_highlight("NonText").fg,
-    --orange = utils.get_highlight("Constant").fg,
-    --purple = utils.get_highlight("Statement").fg,
-    --cyan = utils.get_highlight("Special").fg,
-    --diag_warn = utils.get_highlight("DiagnosticWarn").fg,
-    --diag_error = utils.get_highlight("DiagnosticError").fg,
-    --diag_hint = utils.get_highlight("DiagnosticHint").fg,
-    --diag_info = utils.get_highlight("DiagnosticInfo").fg,
-    --git_del = utils.get_highlight("diffDeleted").fg,
-    --git_add = utils.get_highlight("diffAdded").fg,
-    --git_change = utils.get_highlight("diffChanged").fg,
---}
+M.colors = {
+    bright_bg = utils.get_highlight("Folded").bg,
+    bright_fg = utils.get_highlight("Folded").fg,
+    red = utils.get_highlight("DiagnosticError").fg,
+    dark_red = utils.get_highlight("DiffDelete").bg,
+    green = utils.get_highlight("String").fg,
+    blue = utils.get_highlight("Function").fg,
+    gray = utils.get_highlight("NonText").fg,
+    orange = utils.get_highlight("Constant").fg,
+    purple = utils.get_highlight("Statement").fg,
+    cyan = utils.get_highlight("Special").fg,
+    diag_warn = utils.get_highlight("DiagnosticWarn").fg,
+    diag_error = utils.get_highlight("DiagnosticError").fg,
+    diag_hint = utils.get_highlight("DiagnosticHint").fg,
+    diag_info = utils.get_highlight("DiagnosticInfo").fg,
+    git_del = utils.get_highlight("diffDeleted").fg,
+    git_add = utils.get_highlight("diffAdded").fg,
+    git_change = utils.get_highlight("diffChanged").fg,
+}
 
 M.ViMode = {
     -- get vim current mode, this information will be required by the provider

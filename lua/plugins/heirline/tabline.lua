@@ -31,9 +31,8 @@ local TablineFileFlags = {
         condition = function(self)
             return vim.api.nvim_buf_get_option(self.bufnr, "modified")
         end,
-        provider = " ●",
-        hl = { fg = "#98c379" },
-        --hl = "treesitter_fg",
+        provider = "[+]",
+        hl = { fg = "green" },
     },
     {
         condition = function(self)
@@ -58,12 +57,12 @@ local TablineFileNameBlock = {
     end,
     hl = function(self)
         if self.is_active then
-            return "normal"
+            return "TabLineSel"
         -- why not?
         -- elseif not vim.api.nvim_buf_is_loaded(self.bufnr) then
         --     return { fg = "gray" }
         else
-            return "buffer_visible_bg"
+            return "TabLine"
         end
     end,
     on_click = {
@@ -94,8 +93,8 @@ local TablineCloseButton = {
     end,
     { provider = " " },
     {
-        provider = "󰅖",
-        hl = { fg = "tab_close_bg" },
+        provider = "",
+        hl = { fg = "gray" },
         on_click = {
             callback = function(_, minwid)
                 vim.schedule(function()
@@ -112,13 +111,11 @@ local TablineCloseButton = {
 }
 
 -- The final touch!
-local TablineBufferBlock = utils.surround({ "", "" }, function(self)
+local TablineBufferBlock = utils.surround({ "", "" }, function(self)
     if self.is_active then
-        return "normal"
-        --return "NONE"
+        return utils.get_highlight("TabLineSel").bg
     else
-        return "buffer_visible_bg"
-        --return "NONE"
+        return utils.get_highlight("TabLine").bg
     end
 end, { TablineFileNameBlock, TablineCloseButton })
 
@@ -163,17 +160,19 @@ local TabLineOffset = {
         local bufnr = vim.api.nvim_win_get_buf(win)
         self.winid = win
 
-        if vim.bo[bufnr].filetype == "neo-tree" then
-            self.title = "neo-tree"
+        if vim.bo[bufnr].filetype == "NvimTree" then
+            self.title = "NvimTree"
             return true
+        -- elseif vim.bo[bufnr].filetype == "TagBar" then
+        --     ...
         end
     end,
 
     provider = function(self)
         local title = self.title
         local width = vim.api.nvim_win_get_width(self.winid)
-        local pad = math.ceil((width - #title))
-        return "󰒡 " .. title .. string.rep(" ", pad)
+        local pad = math.ceil((width - #title) / 2)
+        return string.rep(" ", pad) .. title .. string.rep(" ", pad)
     end,
 
     hl = function(self)
