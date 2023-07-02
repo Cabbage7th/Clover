@@ -1,3 +1,5 @@
+local components = require("utils.components")
+
 local M = {
     options = {
         icons_enabled = true,
@@ -34,8 +36,34 @@ local M = {
         lualine_z = {}
     },
     tabline = {},
-    winbar = {},
-    inactive_winbar = {},
+    winbar = {
+        lualine_a = {
+        },
+        lualine_b = {
+            {
+                'navic', components.Navic(),
+                color = {fg = "TabLinesel", bg = "TabLine"}
+            }
+        },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {
+            {
+                'filename',
+                separator = { left = '', right = ''},
+                path = 3,
+            }
+        }
+    },
+    inactive_winbar = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {}
+    },
     extensions = {}
 }
 
