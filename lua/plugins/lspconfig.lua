@@ -4,6 +4,10 @@ local M = {}
 M.on_attach = function(client, bufnr)
     require("mappings").lspconfig(bufnr)
 
+    -- dim code not used
+    if not vim.g.lsp_semantic_tokens then
+        client.server_capabilities.semanticTokensProvider = nil
+    end
     local signs = { Error = " ", Warn = " ", Hint = "󰌵 ", Info = "󰋼 " }
     for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type

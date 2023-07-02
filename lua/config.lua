@@ -5,15 +5,16 @@ local g = vim.g
 g.mapleader = ","
 -------------------------------------- globals -----------------------------------------
 g.theme_toggle = { "onedark", "one_light" }
-g.theme = "tokyonight" -- dracula,onedark/tokyonight/catppuccin/kanagawa/tender
+g.theme = "onedark" -- dracula,onedark/tokyonight/catppuccin/kanagawa/tender
 g.background = "dark"
 g.transparency = false
+g.lsp_semantic_tokens = false -- dim unused code
 
 g.cmp_style = "atom" -- default/vscode(atom)
 
 -------------------------------------- options ------------------------------------------
 opt.laststatus = 3 -- global statusline
-opt.showmode = false
+opt.showmode = true
 
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
