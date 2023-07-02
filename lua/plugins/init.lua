@@ -277,19 +277,19 @@ local default_plugins = {
         end,
     },
     {
-        --'akinsho/bufferline.nvim',
-        --version = "*",
-        --dependencies = {'nvim-tree/nvim-web-devicons'},
-        --init = function()
-            --require("lazy").load { plugins = "bufferline.nvim" }
-        --end,
-        --opts = function()
-            --return require "plugins.bufferline"
-        --end,
-        --config = function(_, opts)
-            --require("bufferline").setup(opts)
-            --require("mappings").bufferline()
-        --end,
+        'akinsho/bufferline.nvim',
+        version = "*",
+        dependencies = {'nvim-tree/nvim-web-devicons'},
+        init = function()
+            require("lazy").load { plugins = "bufferline.nvim" }
+        end,
+        opts = function()
+            return require "plugins.bufferline"
+        end,
+        config = function(_, opts)
+            require("bufferline").setup(opts)
+            require("mappings").bufferline()
+        end,
     },
     {
         'akinsho/git-conflict.nvim',
