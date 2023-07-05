@@ -337,7 +337,7 @@ M.gitsigns = function (bufnr)
     )
     map(
         {'n'},
-        "<leader>td",
+        "<leader>gd",
         function()
             require("gitsigns").toggle_deleted()
         end

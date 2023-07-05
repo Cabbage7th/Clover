@@ -49,6 +49,12 @@ opt.numberwidth = 2
 opt.ruler = false
 opt.relativenumber = true
 
+opt.showmatch = true
+opt.wildmode = "list:longest,full"
+opt.scrolljump = 5
+opt.scrolloff = 3
+
+
 -- disable nvim intro
 opt.shortmess:append("sIcm")
 
@@ -64,7 +70,7 @@ opt.updatetime = 250
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
-opt.whichwrap:append("<>[]hl")
+opt.whichwrap:append("bs<>[]hl")
 opt.wrap = false
 
 -- add binaries installed by mason.nvim to path
