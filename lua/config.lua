@@ -54,6 +54,7 @@ opt.wildmode = "list:longest,full"
 opt.scrolljump = 5
 opt.scrolloff = 3
 
+opt.autochdir = true
 
 -- disable nvim intro
 opt.shortmess:append("sIcm")
