@@ -348,6 +348,19 @@ local default_plugins = {
             require('hex').setup({})
         end,
     },
+    {
+        "utilyre/barbecue.nvim",
+        lazy = false,
+        name = "barbecue",
+        version = "*",
+        dependencies = {
+            "SmiteshP/nvim-navic",
+            "nvim-tree/nvim-web-devicons", -- optional dependency
+        },
+        config = function ()
+            require('plugins.barbecue')
+        end
+    },
 
 ---- vimscript plugins
     {
