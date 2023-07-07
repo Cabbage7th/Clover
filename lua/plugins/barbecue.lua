@@ -10,7 +10,25 @@ require("barbecue").setup({
     custom_section = function()
         return ""
     end,
+    modifiers = {
+        ---Filename modifiers applied to dirname.
+        ---
+        ---See: `:help filename-modifiers`
+        ---
+        ---@type string
+        dirname = ":p:~",
+
+        ---Filename modifiers applied to basename.
+        ---
+        ---See: `:help filename-modifiers`
+        ---
+        ---@type string
+        basename = "",
+    },
     context_follow_icon_color = false,
+    show_dirname = true,
+    show_basename = true,
+    show_modified = false,
 
     symbols = {
         ---Modification indicator.
@@ -26,7 +44,7 @@ require("barbecue").setup({
         ---Entry separator.
         ---
         ---@type string
-        separator = ">",
+        separator = "▶",
     },
     theme = {
         -- this highlight is used to override other highlights
