@@ -56,7 +56,6 @@ local default_plugins = {
             require("indent_blankline").setup(opts)
         end,
     },
-
     {
         "nvim-treesitter/nvim-treesitter",
         init = function()
@@ -75,6 +74,15 @@ local default_plugins = {
                 "HiPhish/nvim-ts-rainbow2",
             },
         },
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        dependencies = {
+            {
+                "nvim-treesitter/nvim-treesitter",
+            }
+        },
+
     },
 
     -- git stuff
@@ -361,6 +369,17 @@ local default_plugins = {
             require('plugins.barbecue')
         end
     },
+    {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
+
+    },
 
 ---- vimscript plugins
     {
@@ -378,10 +397,6 @@ local default_plugins = {
 
     {
         'wellle/targets.vim',
-        lazy = false,
-    },
-    {
-        'tpope/vim-surround',
         lazy = false,
     },
     {
