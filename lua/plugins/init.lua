@@ -114,18 +114,19 @@ local default_plugins = {
 
     -- lsp stuff
     {
-        "williamboman/mason.nvim",
-        cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
+        "williamboman/mason-lspconfig.nvim",
+        lazy = false,
         dependencies = {
-            "williamboman/mason-lspconfig.nvim",
+            {
+                "neovim/nvim-lspconfig",
+            },
+            {
+                "williamboman/mason.nvim",
+                build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+            },
         },
-        build = ":MasonUpdate", -- :MasonUpdate updates registry contents
-        opts = function()
-            return require "plugins.mason"
-        end,
-        config = function(_, opts)
-            require("mason").setup(opts)
-
+        config = function()
+            require("plugins.mason")
         end,
     },
 
