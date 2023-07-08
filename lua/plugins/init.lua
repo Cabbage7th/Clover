@@ -364,6 +364,14 @@ local default_plugins = {
 
 ---- vimscript plugins
     {
+        'azabiong/vim-highlighter',
+        lazy = false,
+        config = function()
+            vim.cmd('nmap [h  <Cmd>Hi<<CR>')
+            vim.cmd('nmap ]h  <Cmd>Hi><CR>')
+        end
+    },
+    {
         'scrooloose/nerdcommenter',
         lazy = false,
     },
