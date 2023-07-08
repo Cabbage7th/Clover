@@ -383,6 +383,11 @@ local default_plugins = {
 
 ---- vimscript plugins
     {
+        'mg979/vim-visual-multi',
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        lazy = false,
+    },
+    {
         'azabiong/vim-highlighter',
         lazy = false,
         config = function()
@@ -402,6 +407,16 @@ local default_plugins = {
     {
         'nathangrigg/vim-beancount',
         lazy = false,
+    },
+    {
+        'godlygeek/tabular',
+        lazy = false,
+        config = function()
+            vim.cmd('nmap <Leader>a= <cmd>:Tabularize /=<CR>')
+            vim.cmd('vmap <Leader>a= <cmd>:Tabularize /=<CR>')
+            vim.cmd('nmap <Leader>a: <cmd>:Tabularize /:\zs<CR>')
+            vim.cmd('vmap <Leader>a: <cmd>:Tabularize /:\zs<CR>')
+        end
     },
 }
 -- lazy main entry
