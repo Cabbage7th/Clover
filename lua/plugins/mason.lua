@@ -23,10 +23,11 @@ local ensure_installed = {
 
 local null_ls_install_list = {
     "stylua",
-    "deno",
+    --"deno",
     "prettier",
     "shellcheck",
     "clang-format",
+    "asm-lsp",
 }
 
 require("mason").setup({

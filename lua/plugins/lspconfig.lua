@@ -65,20 +65,20 @@ require("lspconfig").lua_ls.setup {
 }
 require("lspconfig").clangd.setup {
     on_attach = M.on_attach,
-    capabilities = capabilities,
+    capabilities = M.capabilities,
     cmd = {
         "clangd",
         "--offset-encoding=utf-16",
     },
 }
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "jedi_language_server", "cmake", "marksman", "jsonls" }
+local servers = { "html", "cssls", "tsserver", "jedi_language_server", "cmake", "marksman", "jsonls", "asm_lsp" }
 
 local lspconfig = require "lspconfig"
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = M.on_attach,
-    capabilities = capabilities,
+    capabilities = M.capabilities,
   }
 end
 
