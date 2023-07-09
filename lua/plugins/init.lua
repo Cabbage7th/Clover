@@ -381,6 +381,13 @@ local default_plugins = {
         end
 
     },
+    -- dap not used now
+    {
+        'mfussenegger/nvim-dap',
+    },
+    {
+        'rcarriga/nvim-dap-ui',
+    },
 
 ---- vimscript plugins
     {
