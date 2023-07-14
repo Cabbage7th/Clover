@@ -388,6 +388,13 @@ local default_plugins = {
     {
         'rcarriga/nvim-dap-ui',
     },
+    {
+        "ahmedkhalf/project.nvim",
+        lazy = false,
+        config = function()
+            require("plugins.project_nvim")
+        end
+    },
 
 ---- vimscript plugins
     {
