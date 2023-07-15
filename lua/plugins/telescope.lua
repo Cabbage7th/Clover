@@ -47,7 +47,12 @@ local options = {
     mappings = {
       n = { ["q"] = require("telescope.actions").close },
     },
+    pickers = {
+        lsp_references = {
+            path_display = { "smart" },
+        },
+    },
   },
 }
 
-return options
+require "telescope".setup(options)

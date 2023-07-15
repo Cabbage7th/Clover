@@ -239,13 +239,8 @@ local default_plugins = {
             require("mappings").telescope()
         end,
 
-        opts = function()
-            return require "plugins.telescope"
-        end,
-
-        config = function(_, opts)
-            local telescope = require "telescope"
-            telescope.setup(opts)
+        config = function()
+            require('plugins.telescope')
         end,
     },
 
