@@ -15,7 +15,7 @@ require("project_nvim").setup {
 
   -- All the patterns used to detect root dir, when **"pattern"** is in
   -- detection_methods
-  patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
+  patterns = { ".tags", ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
 }
 require('telescope').load_extension('projects')
 vim.keymap.set("n", "<leader>fp", "<cmd> Telescope projects <CR>")

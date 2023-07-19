@@ -111,28 +111,23 @@ local default_plugins = {
             require("gitsigns").setup(opts)
         end,
     },
-
-    -- lsp stuff
-    {
-        "williamboman/mason-lspconfig.nvim",
-        lazy = false,
-        dependencies = {
-            {
-                "neovim/nvim-lspconfig",
-            },
-            {
-                "williamboman/mason.nvim",
-                build = ":MasonUpdate", -- :MasonUpdate updates registry contents
-            },
-        },
-        config = function()
-            require("plugins.mason")
-        end,
-    },
-
     {
         "neovim/nvim-lspconfig",
         dependencies = {
+            -- lsp stuff
+            {
+                "williamboman/mason-lspconfig.nvim",
+                lazy = false,
+                dependencies = {
+                    {
+                        "williamboman/mason.nvim",
+                        build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+                    },
+                },
+                config = function()
+                    require("plugins.mason")
+                end,
+            },
             -- format & linting
             {
                 "jose-elias-alvarez/null-ls.nvim",

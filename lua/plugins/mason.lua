@@ -32,8 +32,8 @@ local null_ls_install_list = {
 
 require("mason").setup({
 
-    ensure_installed = null_ls_install_list,
-  PATH = "skip",
+---@type '"prepend"' | '"append"' | '"skip"'
+  PATH = "prepend",
 
   ui = {
     icons = {
@@ -58,6 +58,7 @@ require("mason").setup({
 })
 require("mason-lspconfig").setup {
     ensure_installed = ensure_installed,
+    automatic_installation = true,
 }
 -- custom nvchad cmd to install all mason binaries listed
 vim.api.nvim_create_user_command("MasonInstallAll", function()
