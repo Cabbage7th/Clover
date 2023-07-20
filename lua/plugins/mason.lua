@@ -27,7 +27,7 @@ local null_ls_install_list = {
     "prettier",
     "shellcheck",
     "clang-format",
-    "asm-lsp",
+    --"asm-lsp",
 }
 
 require("mason").setup({

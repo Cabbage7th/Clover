@@ -78,5 +78,12 @@ opt.wrap = false
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 vim.env.PATH = vim.env.PATH .. (is_windows and ";" or ":") .. vim.fn.stdpath("data") .. "/mason/bin"
 
+-- add extra filetype
+-- reference: https://neovim.io/doc/user/lua.html#vim.filetype.add()
+vim.filetype.add({
+    filename = {
+        ["SConscript"] = "python",
+    },
+})
 -------------------------------------- do functions ------------------------------------------
 require("mappings").general_mapping()
