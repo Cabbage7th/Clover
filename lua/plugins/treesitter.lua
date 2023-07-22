@@ -13,14 +13,17 @@ local options = {
     "cpp",
     "python",
     "bash",
+    "diff",
 
     "json",
     "yaml",
     "markdown",
     "markdown_inline",
 
+    "make",
     "cmake",
     "gitcommit",
+    "beancount"
   },
     rainbow = {
         enable = true,

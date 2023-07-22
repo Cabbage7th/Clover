@@ -306,14 +306,6 @@ local default_plugins = {
         end,
     },
     {
-        'akinsho/git-conflict.nvim',
-        version = "*",
-        lazy = false,
-        config = function()
-            require("git-conflict").setup()
-        end,
-    },
-    {
         'dhananjaylatkar/cscope_maps.nvim', -- cscope keymaps
         lazy = false,
         config = function()
@@ -387,6 +379,10 @@ local default_plugins = {
     },
 
 ---- vimscript plugins
+    {
+        'rhysd/conflict-marker.vim',
+        lazy = false,
+    },
     {
         'mg979/vim-visual-multi',
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
