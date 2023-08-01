@@ -77,6 +77,7 @@ local servers = { "html", "cssls", "tsserver", "jedi_language_server", "cmake", 
 local lspconfig = require "lspconfig"
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
+    single_file_support = true,
     on_attach = M.on_attach,
     capabilities = M.capabilities,
   }
