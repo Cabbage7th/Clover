@@ -314,8 +314,12 @@ local default_plugins = {
                 cscope = {
                     db_file = "./cscope.out", -- location of cscope db file
                     exec = "cscope", -- "cscope" or "gtags-cscope"
-                    use_telescope = true, -- true will show results in telescope picker
                     db_build_cmd_args = { "-bqkv" }, -- args used for db build (:Cscope build)
+                    picker = "telescope", -- "telescope", "fzf-lua" or "quickfix"
+                    -- "true" does not open picker for single result, just JUMP
+                    skip_picker_for_single_result = false, -- "false" or "true"
+                    -- statusline indicator, default is cscope executable
+                    statusline_indicator = nil,
                 },
             })
             require("mappings").cscope()
