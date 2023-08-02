@@ -367,6 +367,13 @@ local default_plugins = {
         end
 
     },
+    {
+        'sindrets/diffview.nvim',
+        lazy = false,
+        config = function ()
+            require('plugins.diffview')
+        end
+    },
     -- dap not used now
     {
         'mfussenegger/nvim-dap',
