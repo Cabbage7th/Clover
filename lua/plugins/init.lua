@@ -128,13 +128,6 @@ local default_plugins = {
                     require("plugins.mason")
                 end,
             },
-            -- format & linting
-            {
-                "jose-elias-alvarez/null-ls.nvim",
-                config = function()
-                    require "plugins.null-ls"
-                end,
-            },
             {
                 "ray-x/lsp_signature.nvim",
                 config = function()
