@@ -386,6 +386,10 @@ local default_plugins = {
     {
         'rhysd/conflict-marker.vim',
         lazy = false,
+        config = function ()
+            vim.cmd('nmap [x  <Cmd>ConflictMarkerPrevHunk<CR>')
+            vim.cmd('nmap ]x  <Cmd>ConflictMarkerNextHunk<CR>')
+        end
     },
     {
         'mg979/vim-visual-multi',
