@@ -30,9 +30,9 @@ local options = {
         -- list of languages you want to disable the plugin for
         disable = function (_, bufnr)
             local buf_name = vim.api.nvim_buf_get_name(bufnr)
-            local file_size = vim.api.nvim_call_function("getsize", { buf_name })
-            return file_size > 256 * 1024
-        end
+            local file_size = vim.api.nvim_call_function("getfsize", { buf_name })
+            return file_size > 1024 * 1024
+        end,
         -- Which query to use for finding delimiters
         query = 'rainbow-parens',
         -- Highlight the entire buffer all at once
@@ -44,8 +44,8 @@ local options = {
     use_languagetree = true,
     disable = function (_, bufnr)
         local buf_name = vim.api.nvim_buf_get_name(bufnr)
-        local file_size = vim.api.nvim_call_function("getsize", { buf_name })
-        return file_size > 256 * 1024
+        local file_size = vim.api.nvim_call_function("getfsize", { buf_name })
+        return file_size > 1024 * 1024
     end
   },
 
@@ -53,8 +53,8 @@ local options = {
         enable = true,
         disable = function (_, bufnr)
             local buf_name = vim.api.nvim_buf_get_name(bufnr)
-            local file_size = vim.api.nvim_call_function("getsize", { buf_name })
-            return file_size > 256 * 1024
+            local file_size = vim.api.nvim_call_function("getfsize", { buf_name })
+            return file_size > 1024 * 1024
         end
     },
 }

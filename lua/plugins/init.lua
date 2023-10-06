@@ -381,8 +381,18 @@ local default_plugins = {
             require("plugins.project_nvim")
         end
     },
-
+    {
+        'simrat39/symbols-outline.nvim',
+        lazy = false,
+        config = function()
+            require("symbols-outline").setup()
+        end,
+    },
 ---- vimscript plugins
+    {
+        'liuchengxu/vista.vim',
+        lazy = false,
+    },
     {
         'rhysd/conflict-marker.vim',
         lazy = false,
