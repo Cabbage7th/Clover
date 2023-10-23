@@ -112,6 +112,7 @@ cmp.setup({
     { name = "buffer" },
     { name = "nvim_lua" },
     { name = "path" },
+    { name = "codeium"},
     { name = 'beancount',
       option = {
          account = '/home/cabbage/Documents/Nutstore/生活杂谈/beancount/main.bean'
