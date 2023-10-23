@@ -47,7 +47,7 @@ local function border(hl_name)
   }
 end
 
-local options = {
+cmp.setup({
   completion = {
     completeopt = "menu,menuone",
   },
@@ -106,13 +106,15 @@ local options = {
       end
     end, { "i", "s" }),
   },
-  sources = {
+  sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "nvim_lua" },
     { name = "path" },
-  },
-}
-
-return options
+    { name = 'beancount',
+      option = {
+         account = '/home/cabbage/Documents/Nutstore/生活杂谈/beancount/main.bean'
+      }},
+  }),
+})

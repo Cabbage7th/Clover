@@ -187,17 +187,14 @@ local default_plugins = {
                 "hrsh7th/cmp-nvim-lsp",
                 "hrsh7th/cmp-buffer",
                 "hrsh7th/cmp-path",
+                'crispgm/cmp-beancount',
             },
             {
                 'nvim-tree/nvim-web-devicons'
             },
         },
-
-        opts = function()
-            return require "plugins.cmp"
-        end,
-        config = function(_, opts)
-            require("cmp").setup(opts)
+        config = function()
+            require ('plugins.cmp')
         end,
     },
 
