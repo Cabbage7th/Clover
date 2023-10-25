@@ -411,6 +411,10 @@ local default_plugins = {
     },
 ---- vimscript plugins
     {
+        'vim-scripts/DoxygenToolkit.vim',
+        lazy = false,
+    },
+    {
         'liuchengxu/vista.vim',
         lazy = false,
     },
