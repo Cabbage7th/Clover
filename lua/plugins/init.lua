@@ -45,15 +45,13 @@ local default_plugins = {
 
     {
         "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
         init = function()
             require("lazy").load { plugins = "indent-blankline.nvim" }
         end,
-        opts = function()
-            return require("plugins.blankline").blankline
-        end,
-        config = function(_, opts)
+        config = function()
             require("mappings").blankline()
-            require("indent_blankline").setup(opts)
+            require("plugins.blankline")
         end,
     },
     {
