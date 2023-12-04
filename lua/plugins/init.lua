@@ -407,6 +407,18 @@ local default_plugins = {
             })
         end
     },
+    {
+        "kdheepak/lazygit.nvim",
+        lazy = false,
+        -- optional for floating window border decoration
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim",
+        },
+        config = function()
+            require("plugins.lazygit")
+        end,
+    },
 ---- vimscript plugins
     {
         'vim-scripts/DoxygenToolkit.vim',
