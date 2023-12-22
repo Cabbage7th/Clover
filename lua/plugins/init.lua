@@ -423,6 +423,14 @@ local default_plugins = {
             require("plugins.lazygit")
         end,
     },
+    {
+        "folke/todo-comments.nvim",
+        lazy = false,
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function ()
+            require("plugins.todo_comments")
+        end
+    },
 ---- vimscript plugins
     {
         'vim-scripts/DoxygenToolkit.vim',
