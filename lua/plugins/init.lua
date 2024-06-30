@@ -67,11 +67,6 @@ local default_plugins = {
         config = function(_, opts)
             require("nvim-treesitter.configs").setup(opts)
         end,
-        dependencies = {
-            {
-                "HiPhish/nvim-ts-rainbow2",
-            },
-        },
     },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
@@ -410,6 +405,10 @@ local default_plugins = {
             require("codeium").setup({
             })
         end
+    },
+    {
+        "HiPhish/rainbow-delimiters.nvim",
+        lazy = false,
     },
     {
         "kdheepak/lazygit.nvim",
