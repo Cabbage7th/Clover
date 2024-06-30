@@ -122,7 +122,7 @@ cmp.setup({
     { name = "codeium"},
     { name = 'beancount',
       option = {
-         account = '/home/cabbage/Documents/Nutstore/生活杂谈/beancount/main.bean'
+        account = vim.g.beancount_file
       }},
   }),
 })

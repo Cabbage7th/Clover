@@ -3,3 +3,4 @@ coc-settings.json
 lazy-lock.json
 .tag
 .tags
+lua/custom.lua
