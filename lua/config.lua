@@ -21,7 +21,7 @@ opt.cursorline = true
 
 opt.tags = {'.tag', '.tags', 'tags'}
 -- Indenting
-opt.expandtab = true
+opt.expandtab = false
 opt.shiftwidth = 4
 opt.smartindent = true
 opt.tabstop = 4
