@@ -77,7 +77,7 @@ opt.wrap = false
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 vim.env.PATH = vim.env.PATH .. (is_windows and ";" or ":") .. vim.fn.stdpath("data") .. "/mason/bin"
-if vim.fn.filereadable("custom.lua") == 0 then
+if vim.fn.filereadable("custom.lua") == 1 then
     vim.g.beancount_file = require("custom").get_beancount()
 else
     vim.g.beancount_file = nil
