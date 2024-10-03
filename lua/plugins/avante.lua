@@ -36,7 +36,7 @@ local M = {
 		},
 		doubao = {
 			endpoint = "https://ark.cn-beijing.volces.com/api/v3/chat/completions",
-			model="ep-20241003171329-8wvbs",
+			model = "ep-20241003171329-8wvbs",
 			api_key_name = "DOUBAO_API_KEY",
 			parse_curl_args = function(opts, code_opts)
 				return {
@@ -90,7 +90,7 @@ local M = {
 			parse_response_data = function(data_stream, event_state, opts)
 				require("avante.providers").openai.parse_response(data_stream, event_state, opts)
 			end,
-		}
+		},
 	},
 }
 

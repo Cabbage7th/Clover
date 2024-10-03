@@ -19,7 +19,7 @@ opt.showmode = true
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
 
-opt.tags = {'.tag', '.tags', 'tags'}
+opt.tags = { ".tag", ".tags", "tags" }
 -- Indenting
 opt.expandtab = false
 opt.shiftwidth = 4
@@ -29,13 +29,13 @@ opt.softtabstop = 4
 opt.list = true
 
 vim.opt.listchars = {
-    tab = "› ",
-    --eol = "⤶",
-    space = " ",
-    trail = "•",
-    extends = "◀",
-    precedes = "▶",
-    nbsp = ".",
+	tab = "› ",
+	--eol = "⤶",
+	space = " ",
+	trail = "•",
+	extends = "◀",
+	precedes = "▶",
+	nbsp = ".",
 }
 
 opt.fillchars = { eob = " " }
@@ -79,20 +79,20 @@ local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 vim.env.PATH = vim.env.PATH .. (is_windows and ";" or ":") .. vim.fn.stdpath("data") .. "/mason/bin"
 
 -- beancount path configure
-local root_dir = vim.fn.stdpath('config')
+local root_dir = vim.fn.stdpath("config")
 local custom = vim.fn.expand(root_dir .. "/lua/custom.lua")
 if vim.fn.filereadable(custom) == 1 then
-    vim.g.beancount_file = require("custom").get_beancount()
+	vim.g.beancount_file = require("custom").get_beancount()
 else
-    vim.g.beancount_file = nil
+	vim.g.beancount_file = nil
 end
 
 -- add extra filetype
 -- reference: https://neovim.io/doc/user/lua.html#vim.filetype.add()
 vim.filetype.add({
-    filename = {
-        ["SConscript"] = "python",
-    },
+	filename = {
+		["SConscript"] = "python",
+	},
 })
 -------------------------------------- do functions ------------------------------------------
 require("mappings").general_mapping()

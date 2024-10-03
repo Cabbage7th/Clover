@@ -1,46 +1,46 @@
-local bufferline = require('bufferline')
+local bufferline = require("bufferline")
 local M = {
-    options = {
-        mode = "buffers", -- "tabs"/"buffers", set to "tabs" to only show tabpages instead
-        style_preset = bufferline.style_preset.default, -- or bufferline.style_preset.minimal,
-        themable = true, -- allows highlight groups to be overriden i.e. sets highlights as default
-        numbers = "ordinal", -- "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-        close_command = "bdelete! %d",       -- can be a string | function, | false see "Mouse actions"
-        right_mouse_command = "bdelete! %d", -- can be a string | function | false, see "Mouse actions"
-        left_mouse_command = "buffer %d",    -- can be a string | function, | false see "Mouse actions"
-        middle_mouse_command = nil,          -- can be a string | function, | false see "Mouse actions"
-        indicator = {
-            icon = '▎', -- this should be omitted if indicator style is not 'icon'
-            style = 'underline',    --'icon' | 'underline' | 'none',
-        },
-        buffer_close_icon = '󰅖',
-        modified_icon = '●',
-        close_icon = '',
-        left_trunc_marker = '',
-        right_trunc_marker = '',
-        --- name_formatter can be used to change the buffer's label in the bufferline.
-        --- Please note some names can/will break the
-        --- bufferline so use this at your discretion knowing that it has
-        --- some limitations that will *NOT* be fixed.
-        --name_formatter = function(buf)  -- buf contains:
-              -- name                | str        | the basename of the active file
-              -- path                | str        | the full path of the active file
-              -- bufnr (buffer only) | int        | the number of the active buffer
-              -- buffers (tabs only) | table(int) | the numbers of the buffers in the tab
-              -- tabnr (tabs only)   | int        | the "handle" of the tab, can be converted to its ordinal number using: `vim.api.nvim_tabpage_get_number(buf.tabnr)`
-        --end,
-        max_name_length = 18,
-        max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-        truncate_names = true, -- whether or not tab names should be truncated
-        tab_size = 18,
-        diagnostics = "nvim_lsp",--false | "nvim_lsp" | "coc",
-        diagnostics_update_in_insert = false,
-        -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
-        --diagnostics_indicator = function(count, level, diagnostics_dict, context)
-            --return "("..count..")"
-        --end,
-        -- NOTE: this will be called a lot so don't do any heavy processing here
-        --[[ custom_filter = function(buf_number, buf_numbers)
+	options = {
+		mode = "buffers", -- "tabs"/"buffers", set to "tabs" to only show tabpages instead
+		style_preset = bufferline.style_preset.default, -- or bufferline.style_preset.minimal,
+		themable = true, -- allows highlight groups to be overriden i.e. sets highlights as default
+		numbers = "ordinal", -- "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+		close_command = "bdelete! %d", -- can be a string | function, | false see "Mouse actions"
+		right_mouse_command = "bdelete! %d", -- can be a string | function | false, see "Mouse actions"
+		left_mouse_command = "buffer %d", -- can be a string | function, | false see "Mouse actions"
+		middle_mouse_command = nil, -- can be a string | function, | false see "Mouse actions"
+		indicator = {
+			icon = "▎", -- this should be omitted if indicator style is not 'icon'
+			style = "underline", --'icon' | 'underline' | 'none',
+		},
+		buffer_close_icon = "󰅖",
+		modified_icon = "●",
+		close_icon = "",
+		left_trunc_marker = "",
+		right_trunc_marker = "",
+		--- name_formatter can be used to change the buffer's label in the bufferline.
+		--- Please note some names can/will break the
+		--- bufferline so use this at your discretion knowing that it has
+		--- some limitations that will *NOT* be fixed.
+		--name_formatter = function(buf)  -- buf contains:
+		-- name                | str        | the basename of the active file
+		-- path                | str        | the full path of the active file
+		-- bufnr (buffer only) | int        | the number of the active buffer
+		-- buffers (tabs only) | table(int) | the numbers of the buffers in the tab
+		-- tabnr (tabs only)   | int        | the "handle" of the tab, can be converted to its ordinal number using: `vim.api.nvim_tabpage_get_number(buf.tabnr)`
+		--end,
+		max_name_length = 18,
+		max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
+		truncate_names = true, -- whether or not tab names should be truncated
+		tab_size = 18,
+		diagnostics = "nvim_lsp", --false | "nvim_lsp" | "coc",
+		diagnostics_update_in_insert = false,
+		-- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
+		--diagnostics_indicator = function(count, level, diagnostics_dict, context)
+		--return "("..count..")"
+		--end,
+		-- NOTE: this will be called a lot so don't do any heavy processing here
+		--[[ custom_filter = function(buf_number, buf_numbers)
             -- filter out filetypes you don't want to see
             if vim.bo[buf_number].filetype ~= "<i-dont-want-to-see-this>" then
                 return true
@@ -59,16 +59,16 @@ local M = {
                 return true
             end
         end, ]]
-        offsets = {
-            {
-                filetype = "NvimTree",
-                text = "󰉋  FileExplorer",  -- or function ,
-                text_align = "left",     -- "left" | "center" | "right"
-                separator = true,
-            }
-        },
-        color_icons = true, -- whether or not to add the filetype icon highlights
-        --[[ get_element_icon = function(element)
+		offsets = {
+			{
+				filetype = "NvimTree",
+				text = "󰉋  FileExplorer", -- or function ,
+				text_align = "left", -- "left" | "center" | "right"
+				separator = true,
+			},
+		},
+		color_icons = true, -- whether or not to add the filetype icon highlights
+		--[[ get_element_icon = function(element)
           -- element consists of {filetype: string, path: string, extension: string, directory: string}
           -- This can be used to change how bufferline fetches the icon
           -- for an element e.g. a buffer or a tab.
@@ -79,288 +79,288 @@ local M = {
           -- local custom_map = {my_thing_ft: {icon = "my_thing_icon", hl}}
           -- return custom_map[element.filetype]
         end, ]]
-        show_buffer_icons = true, -- disable filetype icons for buffers
-        show_buffer_close_icons = true,
-        show_close_icon = true,
-        show_tab_indicators = true,
-        show_duplicate_prefix = true, -- whether to show duplicate buffer prefix
-        persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-        -- can also be a table containing 2 custom separators
-        -- [focused and unfocused]. eg: { '|', '|' }
-        separator_style = "thick",    -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
-        enforce_regular_tabs = true,
-        always_show_bufferline = true,
-        sort_by = 'insert_at_end',--'insert_after_current' |'insert_at_end' | 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' 
-       -- | function(buffer_a, buffer_b)
-            -- add custom logic
-            -- return buffer_a.modified > buffer_b.modified
-        -- end
-    },
-    highlights = {
-        --fill = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-        --},
-        --background = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --tab = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --tab_selected = {
-            --fg = tabline_sel_bg,
-            --bg = '<colour-value-here>'
-        --},
-        --tab_close = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --close_button = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --close_button_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --close_button_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --buffer_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --buffer_selected = {
-            --fg = normal_fg,
-            --bg = '<colour-value-here>',
-            --bold = true,
-            --italic = true,
-        --},
-        --numbers = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-        --},
-        --numbers_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-        --},
-        --numbers_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --bold = true,
-            --italic = true,
-        --},
-        --diagnostic = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-        --},
-        --diagnostic_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-        --},
-        --diagnostic_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --bold = true,
-            --italic = true,
-        --},
-        --hint = {
-            --fg = '<colour-value-here>',
-            --sp = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --hint_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --hint_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --sp = '<colour-value-here>'
-            --bold = true,
-            --italic = true,
-        --},
-        --hint_diagnostic = {
-            --fg = '<colour-value-here>',
-            --sp = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --hint_diagnostic_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --hint_diagnostic_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --sp = '<colour-value-here>'
-            --bold = true,
-            --italic = true,
-        --},
-        --info = {
-            --fg = '<colour-value-here>',
-            --sp = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --info_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --info_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --sp = '<colour-value-here>'
-            --bold = true,
-            --italic = true,
-        --},
-        --info_diagnostic = {
-            --fg = '<colour-value-here>',
-            --sp = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --info_diagnostic_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --info_diagnostic_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --sp = '<colour-value-here>'
-            --bold = true,
-            --italic = true,
-        --},
-        --warning = {
-            --fg = '<colour-value-here>',
-            --sp = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --warning_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --warning_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --sp = '<colour-value-here>'
-            --bold = true,
-            --italic = true,
-        --},
-        --warning_diagnostic = {
-            --fg = '<colour-value-here>',
-            --sp = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --warning_diagnostic_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --warning_diagnostic_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --sp = warning_diagnostic_fg
-            --bold = true,
-            --italic = true,
-        --},
-        --error = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --sp = '<colour-value-here>'
-        --},
-        --error_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --error_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --sp = '<colour-value-here>'
-            --bold = true,
-            --italic = true,
-        --},
-        --error_diagnostic = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --sp = '<colour-value-here>'
-        --},
-        --error_diagnostic_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --error_diagnostic_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --sp = '<colour-value-here>'
-            --bold = true,
-            --italic = true,
-        --},
-        --modified = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --modified_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --modified_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --duplicate_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-            --italic = true,
-        --},
-        --duplicate_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-            --italic = true
-        --},
-        --duplicate = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-            --italic = true
-        --},
-        --separator_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --separator_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        separator = {
-            --fg = '<colour-value-here>',
-            bg = '#129f91'
-        },
-        --indicator_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>'
-        --},
-        --pick_selected = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --bold = true,
-            --italic = true,
-        --},
-        --pick_visible = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --bold = true,
-            --italic = true,
-        --},
-        --pick = {
-            --fg = '<colour-value-here>',
-            --bg = '<colour-value-here>',
-            --bold = true,
-            --italic = true,
-        --},
-        --offset_separator = {
-            --fg = win_separator_fg,
-            --bg = separator_background_color,
-        --},
-    },
+		show_buffer_icons = true, -- disable filetype icons for buffers
+		show_buffer_close_icons = true,
+		show_close_icon = true,
+		show_tab_indicators = true,
+		show_duplicate_prefix = true, -- whether to show duplicate buffer prefix
+		persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
+		-- can also be a table containing 2 custom separators
+		-- [focused and unfocused]. eg: { '|', '|' }
+		separator_style = "thick", -- "slant" | "slope" | "thick" | "thin" | { 'any', 'any' },
+		enforce_regular_tabs = true,
+		always_show_bufferline = true,
+		sort_by = "insert_at_end", --'insert_after_current' |'insert_at_end' | 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs'
+		-- | function(buffer_a, buffer_b)
+		-- add custom logic
+		-- return buffer_a.modified > buffer_b.modified
+		-- end
+	},
+	highlights = {
+		--fill = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--},
+		--background = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--tab = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--tab_selected = {
+		--fg = tabline_sel_bg,
+		--bg = '<colour-value-here>'
+		--},
+		--tab_close = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--close_button = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--close_button_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--close_button_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--buffer_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--buffer_selected = {
+		--fg = normal_fg,
+		--bg = '<colour-value-here>',
+		--bold = true,
+		--italic = true,
+		--},
+		--numbers = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--},
+		--numbers_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--},
+		--numbers_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--bold = true,
+		--italic = true,
+		--},
+		--diagnostic = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--},
+		--diagnostic_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--},
+		--diagnostic_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--bold = true,
+		--italic = true,
+		--},
+		--hint = {
+		--fg = '<colour-value-here>',
+		--sp = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--hint_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--hint_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--sp = '<colour-value-here>'
+		--bold = true,
+		--italic = true,
+		--},
+		--hint_diagnostic = {
+		--fg = '<colour-value-here>',
+		--sp = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--hint_diagnostic_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--hint_diagnostic_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--sp = '<colour-value-here>'
+		--bold = true,
+		--italic = true,
+		--},
+		--info = {
+		--fg = '<colour-value-here>',
+		--sp = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--info_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--info_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--sp = '<colour-value-here>'
+		--bold = true,
+		--italic = true,
+		--},
+		--info_diagnostic = {
+		--fg = '<colour-value-here>',
+		--sp = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--info_diagnostic_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--info_diagnostic_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--sp = '<colour-value-here>'
+		--bold = true,
+		--italic = true,
+		--},
+		--warning = {
+		--fg = '<colour-value-here>',
+		--sp = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--warning_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--warning_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--sp = '<colour-value-here>'
+		--bold = true,
+		--italic = true,
+		--},
+		--warning_diagnostic = {
+		--fg = '<colour-value-here>',
+		--sp = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--warning_diagnostic_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--warning_diagnostic_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--sp = warning_diagnostic_fg
+		--bold = true,
+		--italic = true,
+		--},
+		--error = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--sp = '<colour-value-here>'
+		--},
+		--error_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--error_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--sp = '<colour-value-here>'
+		--bold = true,
+		--italic = true,
+		--},
+		--error_diagnostic = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--sp = '<colour-value-here>'
+		--},
+		--error_diagnostic_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--error_diagnostic_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--sp = '<colour-value-here>'
+		--bold = true,
+		--italic = true,
+		--},
+		--modified = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--modified_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--modified_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--duplicate_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--italic = true,
+		--},
+		--duplicate_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--italic = true
+		--},
+		--duplicate = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--italic = true
+		--},
+		--separator_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--separator_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		separator = {
+			--fg = '<colour-value-here>',
+			bg = "#129f91",
+		},
+		--indicator_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>'
+		--},
+		--pick_selected = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--bold = true,
+		--italic = true,
+		--},
+		--pick_visible = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--bold = true,
+		--italic = true,
+		--},
+		--pick = {
+		--fg = '<colour-value-here>',
+		--bg = '<colour-value-here>',
+		--bold = true,
+		--italic = true,
+		--},
+		--offset_separator = {
+		--fg = win_separator_fg,
+		--bg = separator_background_color,
+		--},
+	},
 }
 
 return M
