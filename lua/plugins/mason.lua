@@ -6,7 +6,7 @@ local ensure_installed = {
     -- web dev stuff
     "cssls",
     "html",
-    "tsserver",
+    "ts_ls",
 
     -- shell
     "bashls",

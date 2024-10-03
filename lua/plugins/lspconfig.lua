@@ -72,7 +72,7 @@ require("lspconfig").clangd.setup {
     },
 }
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "jedi_language_server", "cmake", "marksman", "jsonls", "bashls" }
+local servers = { "html", "cssls", "ts_ls", "jedi_language_server", "cmake", "marksman", "jsonls", "bashls" }
 
 local lspconfig = require "lspconfig"
 for _, lsp in ipairs(servers) do
