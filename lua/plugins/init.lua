@@ -141,6 +141,13 @@ local default_plugins = {
             require "plugins.lspconfig"
         end,
     },
+	{
+		"nvimtools/none-ls.nvim",
+		lazy = false,
+        config = function()
+            require "plugins.none_ls"
+        end,
+	},
 
     -- load luasnips + cmp related in insert mode only
     {
