@@ -71,6 +71,12 @@ require("lspconfig").clangd.setup {
         "--offset-encoding=utf-16",
     },
 }
+require("lspconfig").bashls.setup {
+    on_attach = M.on_attach,
+    capabilities = M.capabilities,
+    single_file_support = true,
+	filetypes = { "sh", "zsh" },
+}
 -- if you just want default config for the servers then put them in a table
 local servers = { "html", "cssls", "ts_ls", "jedi_language_server", "cmake", "marksman", "jsonls", "bashls" }
 
