@@ -2,6 +2,9 @@ return {
 	defaults = { lazy = true },
 	install = { colorscheme = { "nvchad" } },
 
+	git = {
+		timeout = 120,
+	},
 	ui = {
 		icons = {
 			ft = "",
