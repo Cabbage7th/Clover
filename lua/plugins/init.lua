@@ -187,6 +187,7 @@ local default_plugins = {
 				"hrsh7th/cmp-buffer",
 				"hrsh7th/cmp-path",
 				"crispgm/cmp-beancount",
+				"hrsh7th/cmp-cmdline",
 			},
 			{
 				"nvim-tree/nvim-web-devicons",
@@ -443,51 +444,63 @@ local default_plugins = {
 		end,
 	},
 	{
-		"yetone/avante.nvim",
-		event = "VeryLazy",
-		lazy = false,
-		version = false, -- set this if you want to always pull the latest change
-		opts = function()
-			-- add any opts here
-			return require("plugins.avante")
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({})
 		end,
-		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-		build = "make",
-		-- build = "make BUILD_FROM_SOURCE=true",
-		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+	},
+	{
+		"olimorris/codecompanion.nvim",
+		lazy = false,
+		init = function()
+			require("mappings").codecompanion()
+		end,
+		opts = function()
+			return require("plugins.codecompanion")
+		end,
+		config = function(_, opts)
+			require("codecompanion").setup(opts)
+		end,
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"stevearc/dressing.nvim",
 			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			--- The below dependencies are optional,
-			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-			"hrsh7th/nvim-cmp",
-			--"zbirenbaum/copilot.lua", -- for providers='copilot'
+			"nvim-treesitter/nvim-treesitter",
 			{
-				-- support for image pasting
-				"HakonHarnes/img-clip.nvim",
-				event = "VeryLazy",
+				"MeanderingProgrammer/render-markdown.nvim",
+				ft = { "markdown", "codecompanion" }
+			},
+			{
+				"OXY2DEV/markview.nvim",
+				lazy = false,
 				opts = {
-					-- recommended settings
-					default = {
-						embed_image_as_base64 = false,
-						prompt_for_file_name = false,
-						drag_and_drop = {
-							insert_mode = true,
-						},
-						-- required for Windows users
-						use_absolute_path = true,
+					preview = {
+						filetypes = { "markdown", "codecompanion" },
+						ignore_buftypes = {},
 					},
 				},
 			},
 			{
-				-- Make sure to set this up properly if you have lazy=true
-				"MeanderingProgrammer/render-markdown.nvim",
+				"echasnovski/mini.diff",
+				config = function()
+					local diff = require("mini.diff")
+					diff.setup({
+						-- Disabled by default
+						source = diff.gen_source.none(),
+					})
+				end,
+			},
+			{
+				"HakonHarnes/img-clip.nvim",
 				opts = {
-					file_types = { "markdown", "Avante" },
+					filetypes = {
+						codecompanion = {
+							prompt_for_file_name = false,
+							template = "[Image]($FILE_PATH)",
+							use_absolute_path = true,
+						},
+					},
 				},
-				ft = { "markdown", "Avante" },
 			},
 		},
 	},

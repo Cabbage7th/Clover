@@ -122,5 +122,32 @@ cmp.setup({
 		{ name = "beancount", option = {
 			account = vim.g.beancount_file,
 		} },
+		{
+			per_filetype = {
+				codecompanion = { "codecompanion" },
+			}
+		},
 	}),
+})
+-- for cmd-line
+-- `:` cmdline setup.
+cmp.setup.cmdline(':', {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = 'path' }
+	}, {
+			{
+				name = 'cmdline',
+				option = {
+					ignore_cmds = { 'Man', '!' }
+				}
+			}
+		})
+})
+-- `/` cmdline setup.
+cmp.setup.cmdline('/', {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = 'buffer' }
+	}
 })
