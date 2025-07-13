@@ -13,6 +13,7 @@ g.lsp_semantic_tokens = false -- dim unused code
 g.cmp_style = "atom" -- default/vscode(atom)
 
 -------------------------------------- options ------------------------------------------
+--vim.o.winborder = "rounded"  -- it is too ugly
 opt.laststatus = 3 -- global statusline
 opt.showmode = true
 

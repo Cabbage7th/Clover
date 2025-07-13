@@ -147,8 +147,65 @@ local default_plugins = {
 			require("plugins.none_ls")
 		end,
 	},
+	{
+		'saghen/blink.cmp',
+		-- optional: provides snippets for the snippet source
+		dependencies = {
+			{
+				'echasnovski/mini.snippets',
+				config = function()
+					local gen_loader = require('mini.snippets').gen_loader
+					require('mini.snippets').setup({
+						snippets = {
+							-- Load custom file with global snippets first (adjust for Windows)
+							--gen_loader.from_file('~/.config/nvim/snippets/global.json'),
 
+							-- Load snippets based on current language by reading files from
+							-- "snippets/" subdirectories from 'runtimepath' directories.
+							gen_loader.from_lang(),
+						},
+						-- Module mappings. Use `''` (empty string) to disable one.
+						mappings = {
+							-- Expand snippet at cursor position. Created globally in Insert mode.
+							expand = '',
+
+							-- Interact with default `expand.insert` session.
+							-- Created for the duration of active session(s)
+							jump_next = '<tab>',
+							jump_prev = '<s-tab>',
+							stop = '<C-c>',
+						},
+					})
+				end,
+			},
+			'rafamadriz/friendly-snippets',
+			{
+				'saghen/blink.compat',
+				optional = true,
+				opts = {}
+			}
+		},
+
+		-- use a release tag to download pre-built binaries
+		version = '1.*',
+		-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+		-- build = 'cargo build --release',
+		-- If you use nix, you can build from source using latest nightly rust with:
+		-- build = 'nix run .#build-plugin',
+
+		---@module 'blink.cmp'
+		---@type blink.cmp.Config
+		opts = function()
+			return require("plugins.blink")
+		end,
+		opts_extend = {
+			"sources.default",
+			"sources.compat",
+			"sources.completion.enabled_provider",
+		}
+	},
 	-- load luasnips + cmp related in insert mode only
+	--[[
 	{
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
@@ -197,6 +254,7 @@ local default_plugins = {
 			require("plugins.cmp")
 		end,
 	},
+	--]]
 
 	-- file managing , picker etc
 	{
