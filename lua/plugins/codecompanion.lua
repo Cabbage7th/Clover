@@ -11,6 +11,25 @@ local M = {
 		language = "Chinese",
 	},
 	adapters = {
+		kimi_k2 = function()
+			return require("codecompanion.adapters").extend("openai_compatible", {
+				name = "kimi_k2",
+				url = "https://api.moonshot.cn/v1/chat/completions",
+				env = {
+					api_key = function()
+						return os.getenv("KIMI_API_KEY")
+					end,
+				},
+				schema = {
+					model = {
+						default = "kimi-k2-0711-preview",
+						choices = {
+							["kimi-k2-0711-preview"] = { opts = { stream = true } },
+						},
+					},
+				},
+			})
+		end,
 		deepseek = function()
 			return require("codecompanion.adapters").extend("deepseek", {
 				url = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
