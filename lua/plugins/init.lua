@@ -183,7 +183,23 @@ local default_plugins = {
 				'saghen/blink.compat',
 				optional = true,
 				opts = {}
-			}
+			},
+			-- autopairing of (){}[] etc
+			{
+				"windwp/nvim-autopairs",
+				opts = {
+					fast_wrap = {},
+					enable_check_bracket_line = false,
+				},
+				config = function(_, opts)
+					require("nvim-autopairs").setup(opts)
+
+					-- setup cmp for autopairs
+					local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+					require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+				end,
+			},
+
 		},
 
 		-- use a release tag to download pre-built binaries
