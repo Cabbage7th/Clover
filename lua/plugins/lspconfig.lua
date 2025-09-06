@@ -18,11 +18,35 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				navic.attach(client, bufnr)
 			end
 			-- custome diagnostic signs
-			local signs = { Error = " ", Warn = " ", Hint = "󰌵 ", Info = "󰋼 " }
-			for type, icon in pairs(signs) do
-				local hl = "DiagnosticSign" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-			end
+			vim.diagnostic.config({
+			  -- icons
+			  signs = {
+				text = {
+				  [vim.diagnostic.severity.ERROR] = " ",
+				  [vim.diagnostic.severity.WARN]  = "⚠ ",
+				  [vim.diagnostic.severity.INFO]  = "󰌵 ",
+				  [vim.diagnostic.severity.HINT]  = "󰋼 ",
+				},
+				linehl = {
+				  --[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+				  --[vim.diagnostic.severity.WARN]  = "WarningMsg",
+				  --[vim.diagnostic.severity.INFO]  = "InfoMsg",
+				  --[vim.diagnostic.severity.HINT]  = "HintMsg",
+				},
+				numhl = {
+				  [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+				  [vim.diagnostic.severity.WARN]  = "WarningMsg",
+				  [vim.diagnostic.severity.INFO]  = "InfoMsg",
+				  [vim.diagnostic.severity.HINT]  = "HintMsg",
+				}
+			  },
+
+			  virtual_text = {
+				prefix = "●",
+				spacing = 2,
+			  },
+			  float = { border = "rounded" },
+			})
 		end
 	end,
 })
