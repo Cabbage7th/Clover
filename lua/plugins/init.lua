@@ -220,58 +220,6 @@ local default_plugins = {
 			"sources.completion.enabled_provider",
 		}
 	},
-	-- load luasnips + cmp related in insert mode only
-	--[[
-	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		dependencies = {
-			{
-				-- snippet plugin
-				"L3MON4D3/LuaSnip",
-				dependencies = "rafamadriz/friendly-snippets",
-				opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-				config = function(_, opts)
-					require("plugins.luasnip").luasnip(opts)
-				end,
-			},
-
-			-- autopairing of (){}[] etc
-			{
-				"windwp/nvim-autopairs",
-				opts = {
-					fast_wrap = {},
-					disable_filetype = { "TelescopePrompt", "vim" },
-				},
-				config = function(_, opts)
-					require("nvim-autopairs").setup(opts)
-
-					-- setup cmp for autopairs
-					local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-					require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-				end,
-			},
-
-			-- cmp sources plugins
-			{
-				"saadparwaiz1/cmp_luasnip",
-				"hrsh7th/cmp-nvim-lua",
-				"hrsh7th/cmp-nvim-lsp",
-				"hrsh7th/cmp-buffer",
-				"hrsh7th/cmp-path",
-				"crispgm/cmp-beancount",
-				"hrsh7th/cmp-cmdline",
-			},
-			{
-				"nvim-tree/nvim-web-devicons",
-			},
-		},
-		config = function()
-			require("plugins.cmp")
-		end,
-	},
-	--]]
-
 	-- file managing , picker etc
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -515,14 +463,6 @@ local default_plugins = {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("plugins.todo_comments")
-		end,
-	},
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		config = function()
-			require("copilot").setup({})
 		end,
 	},
 	{
