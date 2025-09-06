@@ -1,20 +1,20 @@
 local M = {
 	strategies = {
 		chat = {
-			adapter = "copilot",
+			adapter = "kimi",
 		},
 		inline = {
-			adapter = "copilot",
+			adapter = "kimi",
 		},
 	},
 	opts = {
 		language = "Chinese",
 	},
-	http = {
-		adapters = {
-			kimi_k2 = function()
+	adapters = {
+		http = {
+			kimi = function()
 				return require("codecompanion.adapters").extend("openai_compatible", {
-					name = "kimi_k2",
+					name = "kimi",
 					url = "https://api.moonshot.cn/v1/chat/completions",
 					env = {
 						api_key = function()
@@ -23,28 +23,9 @@ local M = {
 					},
 					schema = {
 						model = {
-							default = "kimi-k2-0711-preview",
-							choices = {
-								["kimi-k2-0711-preview"] = { opts = { stream = true } },
-							},
-						},
-					},
-				})
-			end,
-			deepseek = function()
-				return require("codecompanion.adapters").extend("deepseek", {
-					url = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
-					env = {
-						api_key = function()
-							return os.getenv("DASHSCOPE_API_KEY")
-						end,
-					},
-					schema = {
-						model = {
-							default = "deepseek-r1",
-							choices = {
-								["deepseek-r1"] = { opts = { can_reason = true } },
-							},
+							default = function()
+								return os.getenv("KIMI_MODE_NAME")
+							end,
 						},
 					},
 				})
@@ -82,29 +63,13 @@ local M = {
 					},
 					schema = {
 						model = {
-							default = "qwen-plus",  -- define llm model to be used
+							default = "qwen3-coder-flash",  -- define llm model to be used
 						},
 					},
 				})
 			end,
-			-- doubao maybe out of time
-			doubao = function()
-				return require("codecompanion.adapters").extend("openai_compatible", {
-					env = {
-						url = "https://ark.cn-beijing.volces.com/api/v3/chat/completions",
-						api_key = function()
-							return os.getenv("DOUBAO_API_KEY")
-						end,
-					},
-					schema = {
-						model = {
-							default = "ep-20241003171329-8wvbs",  -- define llm model to be used
-						},
-					},
-				})
-			end,
-		},
-	}
+		}
+	},
 }
 
 return M
