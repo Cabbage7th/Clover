@@ -541,8 +541,11 @@ local default_plugins = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			{
-				"MeanderingProgrammer/render-markdown.nvim",
-				ft = { "markdown", "codecompanion" }
+				--"MeanderingProgrammer/render-markdown.nvim",
+				--ft = { "markdown", "codecompanion" },
+				--config = function()
+					--require("render-markdown").setup( { latex = { enabled = false } } )
+				--end,
 			},
 			{
 				"OXY2DEV/markview.nvim",
