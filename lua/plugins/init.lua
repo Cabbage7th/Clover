@@ -362,7 +362,17 @@ local default_plugins = {
 		"RaafatTurki/hex.nvim",
 		lazy = false,
 		config = function()
-			require("hex").setup({})
+			require("hex").setup({
+				-- function that runs on BufReadPre to determine if it's binary or not
+				is_file_binary_pre_read = function()
+					return false
+				end,
+
+				-- function that runs on BufReadPost to determine if it's binary or not
+				is_file_binary_post_read = function()
+					return false
+				end,
+			})
 		end,
 	},
 	{
