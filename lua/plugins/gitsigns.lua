@@ -9,6 +9,7 @@ M.gitsigns = {
 		changedelete = { hl = "DiffChangeDelete", text = "~", numhl = "GitSignsChangeNr" },
 		untracked = { hl = "GitSignsAdd", text = "│", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
 	},
+	current_line_blame = true,
 	on_attach = function(bufnr)
 		require("mappings").gitsigns(bufnr)
 	end,
