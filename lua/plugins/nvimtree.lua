@@ -32,9 +32,9 @@ local options = {
 		},
 	},
 	renderer = {
-		root_folder_label = true,
+		--root_folder_label = true, -- using default format: full pathname
 		highlight_git = true,
-		highlight_opened_files = "none",
+		highlight_opened_files = "icon",
 		highlight_modified = "none",
 
 		indent_markers = {
