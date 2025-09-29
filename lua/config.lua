@@ -5,12 +5,15 @@ local g = vim.g
 g.mapleader = ","
 -------------------------------------- globals -----------------------------------------
 g.theme_toggle = { "onedark", "one_light" }
-g.theme = "onedark" -- dracula,onedark/tokyonight/catppuccin/kanagawa/tender
+-- dracula
+-- onedark
+-- onedarkpro: onedark/onedark_vivid/vaporwave
+-- tokyonight-moon/storm/night/day
+-- catppuccin-macchiato/mocha/frappe/latte
+g.theme = "onedark"
 g.background = "dark"
 g.transparency = false
 g.lsp_semantic_tokens = false -- dim unused code
-
-g.cmp_style = "atom" -- default/vscode(atom)
 
 -------------------------------------- options ------------------------------------------
 --vim.o.winborder = "rounded"  -- it is too ugly

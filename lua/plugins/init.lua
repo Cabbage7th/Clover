@@ -7,8 +7,8 @@ local default_plugins = {
 		"navarasu/onedark.nvim",
 		"folke/tokyonight.nvim",
 		{ "catppuccin/nvim", name = "catppuccin" },
-		"rebelot/kanagawa.nvim",
 		"Mofiqul/dracula.nvim",
+		"olimorris/onedarkpro.nvim",
 	},
 
 	{

@@ -19,6 +19,6 @@ require("plugins")
 ------------------------------------- colorscheme -----------------------------------------
 local theme = vim.g.theme
 if theme then
-	require(theme).load()
+	pcall(vim.cmd.colorscheme, theme)
 	vim.opt.background = vim.g.background
 end
