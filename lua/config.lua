@@ -98,5 +98,18 @@ vim.filetype.add({
 		["SConscript"] = "python",
 	},
 })
+-- intent
+local function intent_toggle()
+	if vim.bo.expandtab then
+		opt.expandtab = false
+		vim.notify("Switched to TAB indent", vim.log.levels.INFO, { title = "Indent" })
+	else
+		opt.expandtab = true
+		vim.notify("Switched to SPACE indent", vim.log.levels.INFO, { title = "Indent" })
+	end
+end
+-- user command
+vim.api.nvim_create_user_command("IndentToggle", function() intent_toggle() end, {})
+
 -------------------------------------- do functions ------------------------------------------
 require("mappings").general_mapping()
