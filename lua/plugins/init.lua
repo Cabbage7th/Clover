@@ -8,7 +8,12 @@ local default_plugins = {
 		"folke/tokyonight.nvim",
 		{ "catppuccin/nvim", name = "catppuccin" },
 		"Mofiqul/dracula.nvim",
-		"olimorris/onedarkpro.nvim",
+		"sainnhe/gruvbox-material",
+		"AlexvZyl/nordic.nvim",
+		"EdenEast/nightfox.nvim",
+		"sainnhe/sonokai",
+		"projekt0n/github-nvim-theme",
+		"yorik1984/newpaper.nvim"
 	},
 
 	{

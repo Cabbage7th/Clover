@@ -4,13 +4,17 @@ local g = vim.g
 ------------------------------------- leader key -----------------------------------------
 g.mapleader = ","
 -------------------------------------- globals -----------------------------------------
-g.theme_toggle = { "onedark", "one_light" }
 -- dracula
 -- onedark
--- onedarkpro: onedark/onedark_vivid/vaporwave
 -- tokyonight-moon/storm/night/day
 -- catppuccin-macchiato/mocha/frappe/latte
-g.theme = "onedark"
+-- gruvbox-material
+-- nordic
+-- nightfox
+-- sonokai
+-- github_dark/_light
+-- newpaper (using light)
+g.theme = "github_dark"
 g.background = "dark"
 g.transparency = false
 g.lsp_semantic_tokens = false -- dim unused code
