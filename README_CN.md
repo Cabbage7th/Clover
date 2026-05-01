@@ -77,7 +77,7 @@ mv ~/.config/nvim ~/.config/nvim.bak
 ### 2. 克隆仓库
 
 ```bash
-git clone https://github.com/<your-username>/Clover.git ~/.config/nvim
+git clone https://github.com/Cabbage7th/Clover.git ~/.config/nvim
 ```
 
 ### 3. 启动 Neovim
