@@ -51,14 +51,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
--- if you just want default config for the servers then put them in a table
-local servers = { "lua_ls", "bashls", "html", "cssls", "ts_ls", "jedi_language_server", "cmake", "marksman", "jsonls", "bashls", "clangd" }
-
-vim.lsp.enable(
-	servers,
-	{
-		--capabilities = { },
-	}
-)
-
 return M
