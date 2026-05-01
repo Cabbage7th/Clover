@@ -58,7 +58,7 @@ require("mason").setup({
 })
 require("mason-lspconfig").setup({
 	ensure_installed = ensure_installed,
-	automatic_installation = true,
+	automatic_enable = true,
 })
 -- custom nvchad cmd to install all mason binaries listed
 vim.api.nvim_create_user_command("MasonInstallAll", function()
