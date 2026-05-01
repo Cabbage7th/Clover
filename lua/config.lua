@@ -115,5 +115,32 @@ end
 -- user command
 vim.api.nvim_create_user_command("IndentToggle", function() intent_toggle() end, {})
 
+-------------------------------------- treesitter ------------------------------------------
+-- Enable treesitter-based highlighting for supported filetypes
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {
+		"vim", "lua",
+		"html", "css", "javascript", "typescript", "tsx",
+		"c", "cpp", "python", "bash", "diff",
+		"json", "yaml", "markdown",
+		"make", "cmake", "gitcommit", "beancount",
+	},
+	callback = function()
+		vim.treesitter.start()
+	end,
+})
+
+-- Enable treesitter-based indentation (experimental)
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {
+		"lua", "javascript", "typescript", "tsx",
+		"c", "cpp", "python", "bash",
+		"json", "yaml",
+	},
+	callback = function()
+		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+	end,
+})
+
 -------------------------------------- do functions ------------------------------------------
 require("mappings").general_mapping()
