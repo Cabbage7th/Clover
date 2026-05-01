@@ -61,27 +61,14 @@ local default_plugins = {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		init = function()
-			require("lazy").load({ plugins = "nvim-treesitter" })
-		end,
-		cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+		lazy = false,
 		build = ":TSUpdate",
-		opts = function()
-			return require("plugins.treesitter")
-		end,
-		config = function(_, opts)
-			require("nvim-treesitter.configs").setup(opts)
+		config = function()
+			require("nvim-treesitter").setup()
+			local parsers = require("plugins.treesitter")
+			require("nvim-treesitter").install(parsers.ensure_installed)
 		end,
 	},
-	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		dependencies = {
-			{
-				"nvim-treesitter/nvim-treesitter",
-			},
-		},
-	},
-
 	-- git stuff
 	{
 		"lewis6991/gitsigns.nvim",
@@ -572,7 +559,6 @@ local default_plugins = {
 		end,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
 			{
 				--"MeanderingProgrammer/render-markdown.nvim",
 				--ft = { "markdown", "codecompanion" },

@@ -251,7 +251,6 @@ export DASHSCOPE_API_KEY="your-api-key"
 
 ### Editing
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) — Syntax highlighting/parsing
-- [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) — Text objects
 - [nvim-surround](https://github.com/kylechui/nvim-surround) — Surround editing
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs) — Auto bracket pairing
 - [mini.snippets](https://github.com/echasnovski/mini.snippets) — Snippet engine

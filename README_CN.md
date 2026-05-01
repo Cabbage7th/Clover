@@ -251,7 +251,6 @@ export DASHSCOPE_API_KEY="your-api-key"
 
 ### 编辑增强
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) — 语法高亮/解析
-- [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) — 文本对象
 - [nvim-surround](https://github.com/kylechui/nvim-surround) — 包围编辑
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs) — 自动括号配对
 - [mini.snippets](https://github.com/echasnovski/mini.snippets) — 代码片段引擎
